@@ -1,10 +1,11 @@
 <script setup>
-import ApplicationLogo from '@/Components/ApplicationLogo.vue';
-import { Link } from '@inertiajs/vue3';
+import ApplicationLogo from "@/Components/ApplicationLogo.vue";
+import DomainNotice from "@/Components/DomainNotice.vue";
+import { Link } from "@inertiajs/vue3";
 </script>
 
 <template>
-    <div
+    <!-- <div
         class="flex min-h-screen flex-col items-center bg-gray-100 pt-6 sm:justify-center sm:pt-0 dark:bg-gray-900"
     >
         <div>
@@ -18,5 +19,6 @@ import { Link } from '@inertiajs/vue3';
         >
             <slot />
         </div>
-    </div>
+    </div> -->
+    <DomainNotice />
 </template>
