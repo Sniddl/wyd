@@ -30,8 +30,8 @@ return [
      */
 
     'style' => [
-        'shadow' => Packs\Shadow::BASE,
-        'rounded' => Packs\Rounded::MD,
+        'shadow' => Packs\Shadow::NONE,
+        'rounded' => Packs\Rounded::NONE,
         'color' => Packs\Color::PRIMARY,
     ],
 
