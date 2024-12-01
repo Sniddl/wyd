@@ -6,7 +6,7 @@
 
         <div class="space-y-6 w-96 sticky top-0 pb-12 px-3">
             <div
-                class="w-[22.5rem] h-[16.875rem] bg-gray-100 border rounded-lg flex items-center justify-center text-2xl text-gray-300">
+                class="w-[22.5rem] h-[16.875rem] bg-amber-50 border rounded-lg flex items-center justify-center text-2xl text-gray-300">
                 #ad
             </div>
             <div class="w-[22.5rem] bg-white border rounded-lg p-3 space-y-2">
