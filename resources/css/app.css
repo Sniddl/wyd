@@ -1,3 +1,14 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+html,
+body {
+    background-image: url(storage/img/pattern/cream_pixels.webp);
+}
+
+.border-marker {
+    border-image: url(/storage/img/border.png) 41;
+    border-width: 6px;
+    border-image-outset: 3px;
+}
