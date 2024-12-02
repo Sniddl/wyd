@@ -4,7 +4,7 @@
             <x-avatar class="mt-6 absolute hover:z-20 focus:z-20" lg label="AB" negative />
             <div>
                 <div class="flex items-center space-x-px ml-14 text-sm">
-                    <x-avatar xs label="AB" negative class="absolute w-3 h-3 -ml-8 mt-2 mr-1 z-10" />
+                    <x-avatar xs label="AB" negative class="absolute w-3 h-3 -ml-8 mt-1 mr-1 z-10" />
                     <span class="opacity-45">skyblock</span>
                     <span class="opacity-45">.</span>
                     <span class="opacity-45">net</span>

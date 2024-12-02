@@ -5,7 +5,7 @@
     'title' => 'Home',
 ])
 
-<div class="fixed md:top-3 px-0 md:px-3 top-0 right-0 left-0 bottom-0 overflow-auto">
+<div class="fixed md:-top-px px-0 md:px-3 top-0 right-0 left-0 bottom-0 overflow-auto">
 
     <div class="grid-page max-w-screen-xl mx-auto gap-3 relative ">
         @if ($navigation)
@@ -26,7 +26,7 @@
                 </div>
             @endif
         </div>
-        <div class=" row-start-2 col-start-1 lg:row-start-1 lg:col-start-3 hidden md:block max-w-72">
+        <div class="row-start-2 col-start-1 lg:row-start-1 lg:col-start-3 hidden md:block max-w-72 lg:sticky lg:top-0">
             @if ($discovery)
                 <x-layout.discovery />
             @endif
