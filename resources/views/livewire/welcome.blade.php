@@ -1,7 +1,3 @@
-<div>
-    {{-- <section class="mx-auto max-w-screen-sm"> --}}
+<x-layout.page status discovery title="Home">
     <livewire:post.listing />
-    {{-- </section> --}}
-
-    {{-- The best athlete wants his opponent at his best. --}}
-</div>
+</x-layout.page>

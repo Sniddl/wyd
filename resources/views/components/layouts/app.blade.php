@@ -19,9 +19,7 @@
 </head>
 
 <body class="font-sans antialiased">
-    <x-layout.page>
-        {{ $slot }}
-    </x-layout.page>
+    {{ $slot }}
 </body>
 
 </html>

@@ -1,13 +1,39 @@
+@props([
+    'status' => true,
+    'discovery' => true,
+    'navigation' => true,
+    'title' => 'Home',
+])
+
 <div class="fixed md:top-3 px-0 md:px-3 top-0 right-0 left-0 bottom-0 overflow-auto">
-    <div class="flex items-stretch max-w-screen-xl mx-auto">
-        <x-layout.aside />
-        <div class="max-w-screen-sm mx-auto">
-            <x-layout.status />
-            <div class="!mt-6">
-                {{ $slot }}
+
+    <div class="grid-page max-w-screen-xl mx-auto gap-3 relative ">
+        @if ($navigation)
+            <div class="row-start-1 col-start-1  hidden md:block sticky top-0 z-70 max-w-72">
+                <x-layout.aside />
             </div>
-            <x-layout.navigation />
+        @endif
+        <div class="col-span-3 md:col-span-2 lg:col-span-1 row-span-5 ">
+
+            @if ($status)
+                <x-layout.status :$title />
+                <div class="!mt-6">
+                    {{ $slot }}
+                </div>
+            @else
+                <div>
+                    {{ $slot }}
+                </div>
+            @endif
         </div>
-        <x-layout.discovery />
+        <div class=" row-start-2 col-start-1 lg:row-start-1 lg:col-start-3 hidden md:block max-w-72">
+            @if ($discovery)
+                <x-layout.discovery />
+            @endif
+        </div>
+
+        @if ($navigation)
+            <x-layout.navigation />
+        @endif
     </div>
 </div>

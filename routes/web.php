@@ -1,12 +1,14 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use App\Livewire\Guild\Index as Guilds;
 use App\Livewire\Welcome;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
 Route::get("/", Welcome::class);
+Route::get("/guilds", Guilds::class);
 
 Route::get("/dashboard", function () {
     return Inertia::render("Dashboard");
