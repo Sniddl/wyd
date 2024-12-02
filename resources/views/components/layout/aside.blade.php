@@ -8,12 +8,17 @@
     'w-72' => !$responsive,
 ])>
     <div class="p-3 bg-white border space-y-3">
-        <div class="flex items-center justify-start ml-1 font-bold text-2xl">
-            <span>W</span>
-            <span @class([
-                'hidden xl:block' => $responsive,
-            ])>YD.GG</span>
+        <div class="flex items-center justify-between">
+            <div class="flex items-center justify-start ml-1 font-bold text-2xl">
+                <span>W</span>
+                <span @class([
+                    'hidden xl:block' => $responsive,
+                ])>YD.GG</span>
+            </div>
+            <x-button class="!py-1 !px-2 !gap-x-1" label="Upgrade" rounded icon="check-badge" outline gray
+                interaction="primary" />
         </div>
+
 
         {{-- <div class="flex items-center space-x-2">
             <x-avatar class="w-8 h-8 xl:w-10 xl:h-10" label="AB" negative />

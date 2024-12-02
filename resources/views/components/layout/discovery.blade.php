@@ -2,11 +2,6 @@
     <div class="w-full overflow-scroll space-y-6">
 
         <div class="gap-6 w-72 pb-12 grid-discovery">
-            <div
-                class=" w-72 h-[13.5rem] bg-amber-50 border flex items-center justify-center text-2xl text-gray-300 row-start-1 lg:row-start-2 lg:sticky lg:top-0">
-                #ad
-            </div>
-
             <div class=" w-72 bg-white border p-3 space-y-2 row-start-2 lg:row-start-1">
                 <h2 class="text-2xl font-bold">Newest Members</h2>
                 @for ($i = 0; $i < 3; $i++)
