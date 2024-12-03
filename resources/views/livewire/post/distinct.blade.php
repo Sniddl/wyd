@@ -1,8 +1,13 @@
 <li class="p-3 space-y-1 bg-white">
     <div class="flex items-center justify-between relative -mr-2">
         <div class="flex items-center">
-            <x-avatar class="mt-6 absolute hover:z-20 focus:z-20" lg label="AB" negative />
+            <x-avatar @class([
+                'absolute hover:z-20 focus:z-20',
+                'mt-6' => !$this->replyTo,
+                'mt-0' => $this->replyTo,
+            ]) lg label="AB" negative />
             <div>
+
                 <div class="flex items-center space-x-px ml-14 text-sm">
                     <x-avatar xs label="AB" negative class="absolute w-3 h-3 -ml-8 mt-1 mr-1 z-10" />
                     <span class="opacity-45">skyblock</span>
@@ -15,6 +20,15 @@
                     <span class="opacity-45">·</span>
                     <span class="opacity-45">3 days ago</span>
                 </div>
+                @if ($this->replyTo)
+                    <div class="flex items-center space-x-1 ml-14 text-sm">
+                        <span class="opacity-50">Replying to</span>
+                        <span class="text-primary-500 flex items-center">
+                            <span>@</span>
+                            <a href="#" class="text-primary-500">{{ $this->replyTo }}</a>
+                        </span>
+                    </div>
+                @endif
             </div>
         </div>
         <x-button class="absolute right-0 !p-2" rounded icon="ellipsis-horizontal" flat gray interaction="primary" />
