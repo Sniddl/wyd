@@ -1,3 +1,10 @@
-<x-layout.page status title="Explore">
-
+<x-layout.page status title="Explore" spacing>
+    <x-input placeholder="Search" icon="magnifying-glass" />
+    <x-ui.card title="Newest Guilds">
+        <ul>
+            @for ($i = 0; $i < 3; $i++)
+                <livewire:guild.distinct />
+            @endfor
+        </ul>
+    </x-ui.card>
 </x-layout.page>

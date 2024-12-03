@@ -2,6 +2,7 @@
     'status' => true,
     'discovery' => true,
     'navigation' => true,
+    'spacing' => false,
     'title' => 'Home',
 ])
 
@@ -17,11 +18,11 @@
 
             @if ($status)
                 <x-layout.status :$title />
-                <div class="!mt-6">
+                <div @class(['!mt-6', 'space-y-6' => $spacing])>
                     {{ $slot }}
                 </div>
             @else
-                <div>
+                <div @class(['space-y-6' => $spacing])>
                     {{ $slot }}
                 </div>
             @endif
