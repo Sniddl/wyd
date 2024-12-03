@@ -41,13 +41,13 @@
         {{-- buttons --}}
         <div class="-mx-3">
             <x-navigation.button icon="home" href="/" label="Home" :$responsive />
-            <x-navigation.button icon="magnifying-glass" href="#" label="Explore" :$responsive />
-            <x-navigation.button icon="bell" href="#" label="Notifications" :$responsive />
+            <x-navigation.button icon="magnifying-glass" href="/explore" label="Explore" :$responsive />
+            <x-navigation.button icon="bell" href="/notifications" label="Notifications" :$responsive />
             <x-navigation.button icon="squares-2x2" href="/guilds" label="Guilds" :$responsive />
-            <x-navigation.button icon="check-badge" href="#" label="Premium" :$responsive />
-            <x-navigation.button icon="bookmark" href="#" label="Bookmarks" :$responsive />
-            <x-navigation.button icon="user" href="#" label="Profile" :$responsive />
-            <x-navigation.button icon="adjustments-horizontal" href="#" label="Settings" :$responsive />
+            <x-navigation.button icon="check-badge" href="/premium" label="Premium" :$responsive />
+            <x-navigation.button icon="bookmark" href="/bookmarks" label="Bookmarks" :$responsive />
+            <x-navigation.button icon="user" href="/me" label="Profile" :$responsive />
+            <x-navigation.button icon="adjustments-horizontal" href="/settings" label="Settings" :$responsive />
         </div>
 
     </div>

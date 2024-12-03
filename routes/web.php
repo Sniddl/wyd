@@ -1,7 +1,13 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use App\Livewire\Bookmarks\Index as Bookmarks;
+use App\Livewire\Explore\Index as Explore;
 use App\Livewire\Guild\Index as Guilds;
+use App\Livewire\Notifications\Index as Notifications;
+use App\Livewire\Premium\Index as Premium;
+use App\Livewire\Profile\Index as Profile;
+use App\Livewire\Settings\Index as Settings;
 use App\Livewire\Welcome;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
@@ -9,6 +15,12 @@ use Inertia\Inertia;
 
 Route::get("/", Welcome::class);
 Route::get("/guilds", Guilds::class);
+Route::get("/explore", Explore::class);
+Route::get("/notifications", Notifications::class);
+Route::get("/premium", Premium::class);
+Route::get("/bookmarks", Bookmarks::class);
+Route::get("/me", Profile::class);
+Route::get("/settings", Settings::class);
 
 Route::get("/dashboard", function () {
     return Inertia::render("Dashboard");
