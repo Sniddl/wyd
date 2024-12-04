@@ -1,7 +1,7 @@
-<div class="space-y-4">
+<form class="space-y-4" wire:submit="login">
     <div class="flex items-center justify-between">
         <h2 class="text-2xl font-bold">Login</h2>
-        <x-button primary label="Submit" right-icon="paper-airplane" rounded wire:click="login" spinner />
+        <x-button type="submit" primary label="Submit" right-icon="paper-airplane" rounded spinner />
     </div>
 
     <p>Do not have an account? <button wire:click="pageModal('auth.register')"
@@ -11,6 +11,4 @@
 
     <x-input label="Password" type="password" wire:model="form.password" />
 
-    <x-icon name="arrow-path" class="w-8 h-8 animate-spin" />
-
-</div>
+</form>

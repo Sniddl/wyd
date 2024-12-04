@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\RateLimiter;
 use Illuminate\Validation\ValidationException;
 use Livewire\Component;
 use Illuminate\Support\Str;
+use Livewire\Attributes\On;
 
 class Login extends Component
 {
@@ -42,6 +43,7 @@ class Login extends Component
         }
 
         $this->closeModal();
+        $this->dispatch('authenticated');
     }
 
     /**

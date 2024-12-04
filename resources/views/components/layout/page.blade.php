@@ -17,7 +17,7 @@
         <div class="col-span-3 md:col-span-2 lg:col-span-1 row-span-5 ">
 
             @if ($status)
-                <x-layout.status :$title />
+                <livewire:ui.status-bar :$title />
                 <div @class(['!mt-6', 'space-y-6' => $spacing])>
                     {{ $slot }}
                 </div>
