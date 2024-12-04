@@ -16,6 +16,8 @@ class StatusBar extends Component
 
     public string $title = "Home";
 
+    public ?string $back = null;
+
     public function render()
     {
         return view('livewire.ui.status-bar');

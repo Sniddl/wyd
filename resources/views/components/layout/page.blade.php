@@ -6,15 +6,25 @@
     'title' => 'Home',
 ])
 
-<div class="fixed md:-top-px px-0 md:px-3 top-0 right-0 left-0 bottom-0 overflow-auto">
+<div x-data="page" class="fixed md:-top-px px-0 md:px-3 top-0 right-0 left-0 bottom-0 overflow-auto">
 
-    <div class="grid-page max-w-screen-xl mx-auto gap-3 relative ">
+    <div class="grid-page max-w-screen-xl mx-auto md:gap-3 gap-0 relative ">
         @if ($navigation)
-            <div class="row-start-1 col-start-1  hidden md:block sticky top-0 z-40 max-w-72">
+            <div class="absolute md:hidden inset-0 bg-black opacity-40 z-30" x-on:click="toggleSidebar"
+                x-bind:class="{
+                    'hidden': !asideOpen
+                }">
+            </div>
+            <div class="row-start-1 col-start-1 sticky top-0 z-40 max-w-72 md:block md:!relative"
+                x-bind:class="{
+                    '!absolute top-0 bottom-0': asideOpen,
+                    'hidden': !asideOpen
+                }">
+
                 <livewire:ui.aside />
             </div>
         @endif
-        <div class="col-span-3 md:col-span-2 lg:col-span-1 row-span-5 ">
+        <div class="col-span-3 row-start-1 col-start-1 md:col-start-2 md:col-span-2 lg:col-span-1 row-span-5 bg-red-100">
 
             @if ($status)
                 <livewire:ui.status-bar :$title />

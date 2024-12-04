@@ -1,9 +1,9 @@
 <div @class([
-    'relative',
+    'relative h-full',
     'w-20 xl:w-72' => $this->responsive,
     'w-72' => !$this->responsive,
 ])>
-    <div class="p-3 bg-white border space-y-3">
+    <div class="p-3 bg-white border space-y-3 md:!h-auto" x-bind:class="{ 'h-full': asideOpen }">
         <div class="flex items-center justify-between">
             <div class="flex items-center justify-start ml-1 font-bold text-2xl">
                 <span>W</span>
@@ -11,30 +11,18 @@
                     'hidden xl:block' => $this->responsive,
                 ])>YD.GG</span>
             </div>
-            @auth
-                <x-button class="!py-1 !px-2 !gap-x-1" label="Invite" rounded icon="user-plus" outline gray
-                    interaction="primary" wire:click="pageModal('auth.invite')" />
-            @endauth
+            <div class="-mr-12 md:mr-0 space-x-3">
+                @auth
+                    <x-button class="!py-1 !px-2 !gap-x-1" label="Invite" rounded icon="user-plus" outline gray
+                        interaction="primary" wire:click="pageModal('auth.invite')" />
+                @else
+                    <x-button class="!py-1 !px-2 !gap-x-1" label="Login" rounded icon="arrow-right-end-on-rectangle" outline
+                        gray interaction="primary" wire:click="pageModal('auth.login')" />
+                @endauth
+                <x-button type="button" class="!p-2 font-bold block md:hidden" rounded icon="x-mark" flat white
+                    interaction="gray" x-on:click="toggleSidebar" />
+            </div>
         </div>
-
-
-        {{-- <div class="flex items-center space-x-2">
-            <x-avatar class="w-8 h-8 xl:w-10 xl:h-10" label="AB" negative />
-            <div class="leading-tight block xl:block md:hidden sm:block">
-                <div class="font-bold">Jinx</div>
-                <div class="opacity-50">@lol_jinx</div>
-            </div>
-        </div> --}}
-        {{-- <div class="space-x-3 text-xs items-center ml-1 flex xl:flex md:hidden sm:flex">
-            <div class="flex items-center space-x-1">
-                <span class="font-bold">123k</span>
-                <span>Following</span>
-            </div>
-            <div class="flex items-center space-x-1">
-                <span class="font-bold">123k</span>
-                <span>Followers</span>
-            </div>
-        </div> --}}
 
         {{-- buttons --}}
         <div class="-mx-3">
@@ -49,7 +37,7 @@
         </div>
 
         @auth
-            <x-dropdown icon="arrow-down-left" position="bottom-end" class="w-full">
+            <x-dropdown position="bottom-end" class="w-full">
                 <x-slot name="trigger">
                     <div class="flex items-center space-x-2 border rounded-full w-full px-2 py-1">
                         <x-avatar md label="AB" negative />
