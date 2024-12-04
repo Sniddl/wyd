@@ -3,6 +3,7 @@
 use WireUi\Components;
 use WireUi\Enum\Packs;
 use WireUi\WireUiConfig as Config;
+use App\View\Components\WireUI as Override;
 
 return [
 
@@ -118,9 +119,9 @@ return [
         // 'button' => [
         //     'alias' => 'new-button',
         // ],
-        // 'mini-button' => [
-        //     'class' => Components\Button\Mini::class,
-        //     'alias' => 'new-mini-button',
-        // ],
+        'dropdown' => [
+            'class' => Override\Dropdown::class,
+            // 'alias' => 'new-mini-button',
+        ],
     ]),
 ];

@@ -4,7 +4,7 @@
         <x-button type="submit" primary label="Submit" right-icon="paper-airplane" rounded spinner />
     </div>
 
-    <p>Do not have an account? <button wire:click="pageModal('auth.register')"
+    <p>Do not have an account? <button wire:click="pageModal('auth.register')" type="button"
             class="text-primary-500 font-bold hover:underline">Register!</button></p>
 
     <x-input label="Email or username" placeholder="jinx@example.com" wire:model="form.identifier" />

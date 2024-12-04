@@ -42,6 +42,11 @@ Route::middleware("auth")->group(function () {
 });
 
 Route::middleware('guest')->group(function () {
-    Route::get('/register', Register::class);
+    Route::get('/register', Welcome::class)
+        ->name('register')
+        ->middleware(['signed', 'modal:auth.register']);
+    Route::get('/login', Welcome::class)
+        ->name('login')
+        ->middleware(['modal:auth.login']);
 });
 // require __DIR__ . "/auth.php";

@@ -16,6 +16,9 @@ class Modal extends Component
 
     public function render()
     {
+        if (session()->has('modal')) {
+            $this->modalComponent = session()->get('modal');
+        }
         return view('livewire.ui.modal');
     }
 

@@ -16,7 +16,6 @@ return Application::configure(basePath: dirname(__DIR__))
             append: [
                 \App\Http\Middleware\HandleInertiaRequests::class,
                 \Illuminate\Http\Middleware\AddLinkHeadersForPreloadedAssets::class,
-                \App\Http\Middleware\DisplaysModal::class,
             ]
         );
         $middleware->trustProxies(
@@ -27,7 +26,9 @@ return Application::configure(basePath: dirname(__DIR__))
                 Request::HEADER_X_FORWARDED_AWS_ELB
         );
 
-        //
+        $middleware->alias([
+            'modal' => \App\Http\Middleware\DisplaysModal::class
+        ]);
     })
     ->withExceptions(function (Exceptions $exceptions) {
         //

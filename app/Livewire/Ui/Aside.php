@@ -2,22 +2,19 @@
 
 namespace App\Livewire\Ui;
 
-use App\Livewire\Auth\Login;
 use App\Livewire\Traits\InteractsWithModal;
 use App\Livewire\Traits\InteractsWithUser;
-use Illuminate\Support\Facades\Auth;
-use Livewire\Attributes\On;
 use Livewire\Component;
 
-class StatusBar extends Component
+class Aside extends Component
 {
     use InteractsWithModal;
     use InteractsWithUser;
 
-    public string $title = "Home";
+    public bool $responsive = false;
 
     public function render()
     {
-        return view('livewire.ui.status-bar');
+        return view('livewire.ui.aside');
     }
 }

@@ -11,7 +11,7 @@
     <div class="grid-page max-w-screen-xl mx-auto gap-3 relative ">
         @if ($navigation)
             <div class="row-start-1 col-start-1  hidden md:block sticky top-0 z-40 max-w-72">
-                <x-layout.aside />
+                <livewire:ui.aside />
             </div>
         @endif
         <div class="col-span-3 md:col-span-2 lg:col-span-1 row-span-5 ">

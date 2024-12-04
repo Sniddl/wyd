@@ -13,9 +13,11 @@ class DisplaysModal
      *
      * @param  \Closure(\Illuminate\Http\Request): (\Symfony\Component\HttpFoundation\Response)  $next
      */
-    public function handle(Request $request, Closure $next): Response
+    public function handle(Request $request, Closure $next, string $modal): Response
     {
-        session()->put('modal', $request->boolean('modal') && $request->path() !== '/');
-        return $next($request);
+        session()->put('modal', $modal);
+        $response =  $next($request);
+        session()->remove('modal');
+        return $response;
     }
 }

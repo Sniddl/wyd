@@ -38,9 +38,9 @@ class Login extends Component
             throw ValidationException::withMessages([
                 'form.identifier' => trans('auth.failed'),
             ]);
-
-            RateLimiter::clear($this->throttleKey());
         }
+
+        RateLimiter::clear($this->throttleKey());
 
         $this->closeModal();
         $this->dispatch('authenticated');
