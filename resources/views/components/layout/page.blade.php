@@ -10,7 +10,7 @@
 
     <div class="grid-page max-w-screen-xl mx-auto gap-3 relative ">
         @if ($navigation)
-            <div class="row-start-1 col-start-1  hidden md:block sticky top-0 z-70 max-w-72">
+            <div class="row-start-1 col-start-1  hidden md:block sticky top-0 z-40 max-w-72">
                 <x-layout.aside />
             </div>
         @endif
@@ -37,4 +37,6 @@
             <x-layout.navigation />
         @endif
     </div>
+
+    <livewire:ui.modal />
 </div>

@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use App\Livewire\Auth\Register;
 use App\Livewire\Bookmarks\Index as Bookmarks;
 use App\Livewire\Explore\Index as Explore;
 use App\Livewire\Guild\Index as Guilds;
@@ -40,4 +41,7 @@ Route::middleware("auth")->group(function () {
     );
 });
 
-require __DIR__ . "/auth.php";
+Route::middleware('guest')->group(function () {
+    Route::get('/register', Register::class);
+});
+// require __DIR__ . "/auth.php";
