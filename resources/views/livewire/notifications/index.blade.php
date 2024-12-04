@@ -1,4 +1,4 @@
-<x-layout.page status title="Notifications">
+<x-layout.page status title="Notifications" back="{{ route('home') }}">
     <ul class="divide-y border">
         <livewire:notifications.reaction />
         <livewire:notifications.reply />

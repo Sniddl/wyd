@@ -4,6 +4,7 @@
     'navigation' => true,
     'spacing' => false,
     'title' => 'Home',
+    'back' => null,
 ])
 
 <div x-data="page" class="fixed md:-top-px px-0 md:px-3 top-0 right-0 left-0 bottom-0 overflow-auto">
@@ -24,10 +25,11 @@
                 <livewire:ui.aside />
             </div>
         @endif
-        <div class="col-span-3 row-start-1 col-start-1 md:col-start-2 md:col-span-2 lg:col-span-1 row-span-5 bg-red-100">
+        <div
+            class="col-span-3 row-start-1 col-start-1 md:col-start-2 md:col-span-2 lg:col-span-1 row-span-5 min-h-screen">
 
             @if ($status)
-                <livewire:ui.status-bar :$title />
+                <livewire:ui.status-bar :$title :$back />
                 <div @class(['!mt-6', 'space-y-6' => $spacing])>
                     {{ $slot }}
                 </div>

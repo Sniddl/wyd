@@ -14,7 +14,7 @@ use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
-Route::get("/", Welcome::class);
+Route::get("/", Welcome::class)->name('home');
 Route::get("/guilds", Guilds::class);
 Route::get("/explore", Explore::class);
 Route::get("/notifications", Notifications::class);

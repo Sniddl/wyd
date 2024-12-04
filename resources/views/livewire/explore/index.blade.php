@@ -1,4 +1,4 @@
-<x-layout.page status title="Explore" spacing>
+<x-layout.page status title="Explore" spacing back="{{ route('home') }}">
     <x-input placeholder="Search" icon="magnifying-glass" />
     <x-ui.card title="Newest Guilds">
         <ul>

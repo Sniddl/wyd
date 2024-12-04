@@ -3,7 +3,8 @@
         <div class="flex items-center justify-between space-x-2 relative h-12">
             <div class="z-10">
                 @if ($this->back)
-                    <x-button class="!p-2" rounded icon="arrow-left" flat gray interaction="primary" />
+                    <x-button class="!p-2" rounded icon="arrow-left" flat gray interaction="primary" :href="$this->back"
+                        wire:navigate.hover />
                 @else
                     @auth
                         <x-avatar md label="AB" negative x-on:click="toggleSidebar" class="block md:hidden" />
