@@ -123,5 +123,9 @@ return [
             'class' => Override\Dropdown::class,
             // 'alias' => 'new-mini-button',
         ],
+        'collapse' => [
+            'class' => Override\Collapse::class,
+            'alias' => 'collapse',
+        ],
     ]),
 ];

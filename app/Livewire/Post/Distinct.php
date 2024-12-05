@@ -7,7 +7,7 @@ use Livewire\Component;
 
 class Distinct extends Component
 {
-    public int $id;
+    public ?int $id;
     public ?string $replyTo = null;
 
     public function render()

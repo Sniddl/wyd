@@ -28,7 +28,7 @@
             </x-ui.card>
 
             <div>
-                © {{ now()->year }} Snow Laboratory.
+                © {{ now()->year }} Snow Builds.
             </div>
         </div>
     </div>

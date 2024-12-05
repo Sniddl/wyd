@@ -28,31 +28,22 @@
         <div class="-mx-3">
             <x-navigation.button icon="home" href="/" label="Home" :responsive="$this->responsive" />
             <x-navigation.button icon="magnifying-glass" href="/explore" label="Explore" :responsive="$this->responsive" />
-            @auth
-                <x-navigation.button icon="bell" href="/notifications" label="Notifications" :responsive="$this->responsive" />
-                <x-navigation.button icon="squares-2x2" href="/guilds" label="Guilds" :responsive="$this->responsive" />
-                <x-navigation.button icon="check-badge" href="/premium" label="Premium" :responsive="$this->responsive" />
-                <x-navigation.button icon="bookmark" href="/bookmarks" label="Bookmarks" :responsive="$this->responsive" />
-                <x-navigation.button icon="user" href="/me" label="Profile" :responsive="$this->responsive" />
-                <x-navigation.button icon="adjustments-horizontal" href="/settings" label="Settings" :responsive="$this->responsive" />
-            @endauth
-        </div>
 
-        @auth
-            <x-dropdown position="bottom-end" class="w-full">
-                <x-slot name="trigger">
-                    <div class="flex items-center space-x-2 border rounded-full w-full px-2 py-1">
-                        <x-avatar md label="{{ str(Auth::user()->username[0])->upper() }}" negative />
-                        <div>
-                            <div class="font-bold">{{ Auth::user()->name }}</div>
-                            <div class="text-sm opacity-50"><span>@</span>{{ Auth::user()->username }}</div>
+            <x-collapse separator title="Guilds" icon="squares-2x2">
+                <ul class="space-y-2">
+                    @for ($i = 0; $i < 3; $i++)
+                        <div class="flex items-center justify-between space-x-2 flex-wrap space-y-2">
+                            <div class="flex items-center space-x-2">
+                                <x-avatar class="w-8 h-8" label="AB" negative />
+                                <div class="leading-tight">
+                                    <div>SkyBlock</div>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-
-                </x-slot>
-                <x-dropdown.item label="Logout" class="!text-negative-500" wire:click="logout" />
-            </x-dropdown>
-        @endauth
+                    @endfor
+                </ul>
+            </x-collapse>
+        </div>
 
     </div>
 

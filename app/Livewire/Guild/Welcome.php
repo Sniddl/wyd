@@ -4,11 +4,11 @@ namespace App\Livewire\Guild;
 
 use Livewire\Component;
 
-class Distinct extends Component
+class Welcome extends Component
 {
 
     public function render()
     {
-        return view('livewire.guild.distinct');
+        return view('livewire.guild.welcome');
     }
 }
