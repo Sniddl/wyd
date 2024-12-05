@@ -9,6 +9,6 @@
 
     <x-input label="Email or username" placeholder="jinx@example.com" wire:model="form.identifier" />
 
-    <x-input label="Password" type="password" wire:model="form.password" />
+    <x-input label="Password" type="password" wire:model="form.password" placeholder="password" />
 
 </form>

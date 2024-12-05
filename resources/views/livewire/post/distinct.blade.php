@@ -5,20 +5,33 @@
                 'absolute hover:z-20 focus:z-20',
                 'mt-6' => !$this->replyTo,
                 'mt-0' => $this->replyTo,
-            ]) lg label="AB" negative />
+            ]) lg label="{{ str($post->author->username[0])->upper() }}" negative />
             <div>
 
                 <div class="flex items-center space-x-px ml-14 text-sm">
-                    <x-avatar xs label="AB" negative class="absolute w-3 h-3 -ml-8 mt-1 mr-1 z-10" />
-                    <span class="opacity-45">skyblock</span>
-                    <span class="opacity-45">.</span>
-                    <span class="opacity-45">net</span>
+                    @if ($post->model_type != 'void')
+                        <x-avatar xs label="AB" negative class="absolute w-3 h-3 -ml-8 mt-1 mr-1 z-10" />
+                        <span class="opacity-45">skyblock</span>
+                        <span class="opacity-45">.</span>
+                        <span class="opacity-45">net</span>
+                    @else
+                        {{-- <x-avatar xs white class="absolute w-3 h-3 -ml-8 mt-1 mr-1 z-10 !bg-white" icon="megaphone">
+                            <x-slot name="label">
+                                <x-icon name="megaphone" sm solid class="text-black" />
+                            </x-slot>
+                        </x-avatar> --}}
+                        {{-- <span class="opacity-45">**SHOUTING**</span> --}}
+                    @endif
                 </div>
                 <div class="flex items-center space-x-1 ml-14">
-                    <span class="font-bold">Jinx</span>
-                    <span class="opacity-45">@lol_jinx</span>
+                    <span class="font-bold">{{ $post->author->name }}</span>
+                    <span class="opacity-45 flex"><span>@</span>{{ $post->author->username }}</span>
                     <span class="opacity-45">·</span>
-                    <span class="opacity-45">3 days ago</span>
+                    <span class="opacity-45">{{ $post->created_at->diffForHumans(short: true) }}</span>
+                    @if ($post->model_type == 'void')
+                        <span class="opacity-45">·</span>
+                        <x-icon name="megaphone" outline class="text-black w-4 h-4 opacity-45" />
+                    @endif
                 </div>
                 @if ($this->replyTo)
                     <div class="flex items-center space-x-1 ml-14 text-sm">
@@ -34,9 +47,7 @@
         <x-button class="absolute right-0 !p-2" rounded icon="ellipsis-horizontal" flat gray interaction="primary" />
     </div>
     <div class="ml-14">
-        <div>Lorem ipsum dolor sit amet consectetur adipisicing elit. Recusandae animi, suscipit dolore veritatis a
-            excepturi nobis alias adipisci hic neque quia odio magni tempore eligendi voluptatem doloribus nulla modi
-            laborum.</div>
+        <div>{{ $post->bait }}</div>
 
         <div class="flex items-center justify-between -mx-2 mt-3">
             <x-button class="!py-1 !px-2" label="123K" rounded icon="heart" flat gray interaction="primary" />

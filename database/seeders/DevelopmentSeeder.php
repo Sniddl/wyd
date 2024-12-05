@@ -14,15 +14,27 @@ class DevelopmentSeeder extends Seeder
      */
     public function run(): void
     {
-        User::factory()->create([
+        $jinx = User::factory()->create([
             'name' => 'Powder',
             'email' => 'jinx@example.com',
-            'username' => 'lol_jinx',
+            'username' => 'jinx_lol',
             'password' => Hash::make('password'),
         ]);
 
         User::factory(10, [
             'password' => Hash::make('password')
         ])->create();
+
+        $jinx->posts()->create([
+            'bait' => "Never tell anyone your password! ... It's password"
+        ]);
+
+        $jinx->posts()->create([
+            'bait' => "Jinx? Stands for Jinx! Durr."
+        ]);
+
+        $jinx->posts()->create([
+            'bait' => "Hold on! I'm about to say something really cool!"
+        ]);
     }
 }

@@ -7,9 +7,10 @@
                         wire:navigate.hover />
                 @else
                     @auth
-                        <x-avatar md label="AB" negative x-on:click="toggleSidebar" class="block md:hidden" />
+                        <x-avatar md label="{{ str(Auth::user()->username[0])->upper() }}" negative x-on:click="toggleSidebar"
+                            class="block md:hidden" />
                     @else
-                        <x-icon name="user-circle" class="w-12 h-12" outline x-on:click="toggleSidebar" />
+                        <x-icon name="user-circle" class="w-12 h-12 block md:hidden" outline x-on:click="toggleSidebar" />
                     @endauth
                 @endif
             </div>

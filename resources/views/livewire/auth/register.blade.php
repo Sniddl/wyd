@@ -7,6 +7,12 @@
     <p>Already have an account? <button wire:click="pageModal('auth.login')" type="button"
             class="text-primary-500 font-bold hover:underline">Login!</button></p>
 
+    <x-alert warning>
+        <x-slot name="title" class="italic">
+            <b>Pre-alpha release:</b> Accounts will get deleted when the site updates.
+        </x-slot>
+    </x-alert>
+
     <x-input label="Invite Code" placeholder="WYD-XXXX-XXXXX" wire:model="form.invite" :readonly="!!$this->form->invite"
         :disabled="!!$this->form->invite" />
 
@@ -14,7 +20,7 @@
 
     <x-input label="Email" placeholder="jinx@example.com" wire:model="form.email" />
 
-    <x-input label="Username" placeholder="lol_jinx" prefix="@" wire:model="form.username" />
+    <x-input label="Username" placeholder="jinx_lol" prefix="@" wire:model="form.username" />
 
     <div class="grid grid-cols-2 gap-4">
         <x-input label="Password" type="password" wire:model="form.password" />

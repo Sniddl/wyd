@@ -9,12 +9,14 @@
                             <x-avatar md label="AB" negative />
                             <div class="leading-tight">
                                 <div class="font-bold">Jinx</div>
-                                <div class="opacity-50">@lol_jinx</div>
+                                <div class="opacity-50">@jinx_lol</div>
                             </div>
 
                         </div>
-                        <x-button class="!py-1 !px-3 !gap-x-1" label="Add" rounded icon="plus" outline gray
-                            interaction="primary" />
+                        @auth
+                            <x-button class="!py-1 !px-3 !gap-x-1" label="Add" rounded icon="plus" outline gray
+                                interaction="primary" />
+                        @endauth
                     </div>
                 @endfor
             </x-ui.card>

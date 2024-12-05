@@ -1,3 +1,3 @@
 <div>
-    <livewire:post.distinct replyTo="lol_jinx" />
+    <livewire:post.distinct replyTo="jinx_lol" />
 </div>

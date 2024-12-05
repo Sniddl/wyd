@@ -7,6 +7,8 @@
                 <div class="opacity-50">mc.skyblock.net</div>
             </div>
         </div>
-        <x-button class="!py-1 !px-3 !gap-x-1" label="Join" rounded icon="plus" outline gray interaction="primary" />
+        @auth
+            <x-button class="!py-1 !px-3 !gap-x-1" label="Join" rounded icon="plus" outline gray interaction="primary" />
+        @endauth
     </div>
 </li>

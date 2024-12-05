@@ -9,7 +9,7 @@ body {
 }
 
 .border-marker {
-  border-image: url(/storage/img/border.png) 41;
+  border-image: url(/img/pattern/subtle.png) 41;
   border-width: 6px;
   border-image-outset: 3px;
 }

@@ -20,4 +20,10 @@
         @endenv
     </div>
 
+    <x-alert warning>
+        <x-slot name="title" class="italic">
+            <b>Pre-alpha release:</b> Accounts will get deleted when the site updates.
+        </x-slot>
+    </x-alert>
+
 </div>
