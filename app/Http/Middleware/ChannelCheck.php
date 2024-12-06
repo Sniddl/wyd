@@ -17,17 +17,19 @@ class ChannelCheck
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if (! $request->route('thread')) {
-            $channel = Channel::with('threads')->firstWhere('identifier', $request->route('channel'));
+        if ($request->route('channel')) {
+            if (! $request->route('thread')) {
+                $channel = Channel::with('threads')->firstWhere('identifier', $request->route('channel'));
 
-            if ($channel->type == 'category') {
-                abort_if($channel->threads->count() <= 0, 404);
+                if ($channel->type == 'category') {
+                    abort_if($channel->threads->count() <= 0, 404);
 
-                return redirect()->route('thread', [
-                    'guild' => $request->route('guild'),
-                    'channel' => $request->route('channel'),
-                    'thread' => $channel->threads->first(),
-                ]);
+                    return redirect()->route('thread', [
+                        'guild' => $request->route('guild'),
+                        'channel' => $request->route('channel'),
+                        'thread' => $channel->threads->first(),
+                    ]);
+                }
             }
         }
         return $next($request);

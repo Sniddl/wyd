@@ -1,31 +1,27 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
-use App\Livewire\Auth\Register;
-use App\Livewire\Bookmarks\Index as Bookmarks;
-use App\Livewire\Explore\Index as Explore;
-use App\Livewire\Guild\Index as Guilds;
-use App\Livewire\Guild\Welcome as GuildWelcome;
-use App\Livewire\Notifications\Index as Notifications;
-use App\Livewire\Premium\Index as Premium;
-use App\Livewire\Profile\Index as Profile;
-use App\Livewire\Settings\Index as Settings;
-use App\Livewire\Welcome;
-use Illuminate\Foundation\Application;
+use App\Livewire\Page\Bookmarks;
+use App\Livewire\Page\Channel;
+use App\Livewire\Page\Explore;
+use App\Livewire\Page\Guilds;
+use App\Livewire\Page\Home;
+use App\Livewire\Page\Notifications;
+use App\Livewire\Page\Premium;
+use App\Livewire\Page\Profile;
+use App\Livewire\Page\Settings;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
-Route::get("/", Welcome::class)->name('home');
-Route::get("/guilds", Guilds::class)->name('guilds');
-Route::get("/guilds/{guild}", GuildWelcome::class)->name('guild');
-// Route::get("/guilds/{guild}/{channel}", GuildWelcome::class)->name('channel');
-Route::get("/guilds/{guild}/{channel}/{thread?}", GuildWelcome::class)->name('thread')
-    ->middleware([\Illuminate\Routing\Middleware\SubstituteBindings::class, 'channel-check']);
+Route::get("/", Home::class)->name('home');
+Route::get('/guilds', Guilds::class);
+Route::get("/guilds/{guild}/{channel?}/{thread?}", Channel::class)->name('thread')
+    ->middleware(['channel-check']);
 Route::get("/explore", Explore::class)->name('explore');
 Route::get("/notifications", Notifications::class)->name('notifications');
 Route::get("/premium", Premium::class);
 Route::get("/bookmarks", Bookmarks::class);
-Route::get("/me", Profile::class);
+Route::get("/profile", Profile::class);
 Route::get("/settings", Settings::class);
 
 Route::get("/dashboard", function () {
@@ -34,24 +30,24 @@ Route::get("/dashboard", function () {
     ->middleware(["auth", "verified"])
     ->name("dashboard");
 
-Route::middleware("auth")->group(function () {
-    Route::get("/profile", [ProfileController::class, "edit"])->name(
-        "profile.edit"
-    );
-    Route::patch("/profile", [ProfileController::class, "update"])->name(
-        "profile.update"
-    );
-    Route::delete("/profile", [ProfileController::class, "destroy"])->name(
-        "profile.destroy"
-    );
-});
+// Route::middleware("auth")->group(function () {
+//     Route::get("/profile", [ProfileController::class, "edit"])->name(
+//         "profile.edit"
+//     );
+//     Route::patch("/profile", [ProfileController::class, "update"])->name(
+//         "profile.update"
+//     );
+//     Route::delete("/profile", [ProfileController::class, "destroy"])->name(
+//         "profile.destroy"
+//     );
+// });
 
 Route::middleware('guest')->group(function () {
-    Route::get('/register', Welcome::class)
+    Route::get('/register', Home::class)
         ->name('register')
-        ->middleware(['signed', 'modal:auth.register']);
-    Route::get('/login', Welcome::class)
+        ->middleware(['signed', 'modal:page.auth.register']);
+    Route::get('/login', Home::class)
         ->name('login')
-        ->middleware(['modal:auth.login']);
+        ->middleware(['modal:page.auth.login']);
 });
 // require __DIR__ . "/auth.php";

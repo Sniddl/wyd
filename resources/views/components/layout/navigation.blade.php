@@ -4,6 +4,6 @@
         interaction="primary" />
     <x-button xl class="!p-2" href="{{ route('notifications') }}" rounded icon="bell" flat gray
         interaction="primary" />
-    <x-button xl class="!p-2" href="{{ route('guilds') }}" rounded icon="squares-2x2" flat gray
-        interaction="primary" />
+    {{-- <x-button xl class="!p-2" href="{{ route('guilds') }}" rounded icon="squares-2x2" flat gray
+        interaction="primary" /> --}}
 </div>

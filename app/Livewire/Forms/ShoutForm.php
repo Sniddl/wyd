@@ -12,7 +12,7 @@ class ShoutForm extends Form
     protected function rules()
     {
         return [
-            'bait' => ['required', 'string', 'min:1'],
+            'bait' => ['required', 'string', 'min:2'],
         ];
     }
 

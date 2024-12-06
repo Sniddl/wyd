@@ -31,4 +31,13 @@ class Thread extends Model
     {
         return $this->belongsTo(Channel::class, 'channel_id');
     }
+
+    public function href($guild, $channel)
+    {
+        return route('thread', [
+            'guild' => $guild,
+            'channel' => $channel,
+            'thread' => $this
+        ]);
+    }
 }

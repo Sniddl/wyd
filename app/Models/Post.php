@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Post extends Model
 {
-    protected $fillable = ['bait', 'content', 'model_id', 'model_type'];
+    protected $fillable = ['bait', 'content', 'guild_id', 'channel_id', 'post_id'];
 
     public function author(): BelongsTo
     {
