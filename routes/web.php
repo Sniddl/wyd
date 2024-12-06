@@ -17,7 +17,10 @@ use Inertia\Inertia;
 
 Route::get("/", Welcome::class)->name('home');
 Route::get("/guilds", Guilds::class)->name('guilds');
-Route::get("/guilds/{guild}", GuildWelcome::class);
+Route::get("/guilds/{guild}", GuildWelcome::class)->name('guild');
+// Route::get("/guilds/{guild}/{channel}", GuildWelcome::class)->name('channel');
+Route::get("/guilds/{guild}/{channel}/{thread?}", GuildWelcome::class)->name('thread')
+    ->middleware([\Illuminate\Routing\Middleware\SubstituteBindings::class, 'channel-check']);
 Route::get("/explore", Explore::class)->name('explore');
 Route::get("/notifications", Notifications::class)->name('notifications');
 Route::get("/premium", Premium::class);

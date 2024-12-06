@@ -29,20 +29,45 @@
             <x-navigation.button icon="home" href="/" label="Home" :responsive="$this->responsive" />
             <x-navigation.button icon="magnifying-glass" href="/explore" label="Explore" :responsive="$this->responsive" />
 
-            <x-collapse separator title="Guilds" icon="squares-2x2">
-                <ul class="space-y-2">
+            @if ($guild)
+                <x-collapse separator title="Channels" icon="chat-bubble-left-right" class="px-2">
+                    <ul>
+                        @foreach ($guild->channels as $channel)
+                            @if ($channel->type == 'category')
+                                <x-collapse :title="$channel->name" size="md">
+                                    <ul>
+                                        @foreach ($channel->threads as $thread)
+                                            <li>
+                                                <x-button flat gray :label="$thread->name" icon="hashtag"
+                                                    href="{{ route('thread', compact('guild', 'channel', 'thread')) }}"
+                                                    class="w-full !justify-start !px-2 !py-1 !rounded" />
+                                            </li>
+                                        @endforeach
+                                    </ul>
+                                </x-collapse>
+                            @else
+                                <li class="px-3">{{ $channel->name }}</li>
+                            @endif
+                        @endforeach
+                    </ul>
+                </x-collapse>
+            @endif
+
+            <x-collapse :open="!$guild" separator title="Guilds" icon="squares-2x2">
+                <ul class="-mx-3 px-3">
                     @for ($i = 0; $i < 3; $i++)
-                        <div class="flex items-center justify-between space-x-2 flex-wrap space-y-2">
-                            <div class="flex items-center space-x-2">
-                                <x-avatar class="w-8 h-8" label="AB" negative />
-                                <div class="leading-tight">
-                                    <div>SkyBlock</div>
-                                </div>
+                        <x-button flat gray class="flex items-center !justify-start !px-2 space-x-2 w-full"
+                            href="/guilds/skyblock" wire:navigate>
+                            <x-avatar class="w-8 h-8" label="AB" negative />
+                            <div class="leading-tight">
+                                <div>SkyBlock</div>
                             </div>
-                        </div>
+                        </x-button>
                     @endfor
                 </ul>
             </x-collapse>
+
+
         </div>
 
     </div>

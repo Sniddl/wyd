@@ -2,6 +2,8 @@
 
 namespace Database\Seeders;
 
+use App\Models\Channel;
+use App\Models\Guild;
 use App\Models\User;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
@@ -35,6 +37,52 @@ class DevelopmentSeeder extends Seeder
 
         $jinx->posts()->create([
             'bait' => "Hold on! I'm about to say something really cool!"
+        ]);
+
+        $rl = Guild::factory()->for($jinx, 'owner')->create([
+            'name' => 'Rocket League',
+            'identifier' => 'rocketleague'
+        ]);
+
+        $lol = Guild::factory()->for($jinx, 'owner')->create([
+            'name' => 'League of Legends',
+            'identifier' => 'leagueoflegends'
+        ]);
+
+        $cod = Guild::factory()->for($jinx, 'owner')->create([
+            'name' => 'Call of Duty',
+            'identifier' => 'callofduty'
+        ]);
+
+        $skyblock = Guild::factory()->for($jinx, 'owner')->create([
+            'name' => 'SkyBlock',
+            'identifier' => 'skyblock'
+        ]);
+
+        Channel::factory()->for($rl)->create([
+            'name' => 'Rumble',
+            'identifier' => 'rumble'
+        ]);
+
+        Channel::factory()->for($rl)->create([
+            'name' => 'Competitive',
+            'identifier' => 'competitive'
+        ]);
+
+        Channel::factory()->for($rl)->create([
+            'name' => 'Casual',
+            'identifier' => 'casual'
+        ]);
+
+        $support = Channel::factory()->for($skyblock)->create([
+            'name' => 'Support',
+            'identifier' => 'support',
+            'type' => 'category',
+        ]);
+
+        Channel::factory()->for($skyblock)->for($support)->create([
+            'name' => 'General',
+            'identifier' => 'general'
         ]);
     }
 }

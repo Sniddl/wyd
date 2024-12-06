@@ -4,6 +4,7 @@
     'navigation' => true,
     'spacing' => false,
     'title' => 'Home',
+    'guild' => null,
 ])
 
 <div x-data="page" class="fixed md:-top-px px-0 md:px-3 top-0 right-0 left-0 bottom-0 overflow-auto">
@@ -21,7 +22,7 @@
                     'hidden': !asideOpen
                 }">
 
-                <livewire:ui.aside />
+                <livewire:ui.aside :guildId="$guild" />
             </div>
         @endif
         <div

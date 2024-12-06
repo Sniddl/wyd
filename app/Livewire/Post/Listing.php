@@ -14,9 +14,19 @@ class Listing extends Component
         'shout' => '$refresh'
     ];
 
+    public ?int $channelId = null;
+    public ?int $guildId = null;
+
     public function render()
     {
-        $posts = Post::latest()->whereIn('model_type', $this->types)->paginate();
+        $posts = Post::latest()->when(
+            $this->channelId,
+            fn($query) => $query->where('channel_id', $this->channelId)
+        )->when(
+            $this->guildId,
+            fn($query) => $query->where('guild_id', $this->guildId)
+        )->paginate();
+
         return view('livewire.post.listing', [
             'posts' => $posts
         ]);

@@ -11,16 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('posts', function (Blueprint $table) {
+        Schema::create('guilds', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')
+            $table->string('name');
+            $table->string('identifier')->unique();
+            $table->foreignId('owner_id')
+                ->nullable()
                 ->constrained('users', 'id');
-            $table->bigInteger('model_id')->nullable();
-            $table->string('model_type')->default('void');
-            $table->string('bait')->required();
-            $table->text('content')->nullable();
             $table->timestamps();
-            $table->softDeletes();
         });
     }
 
@@ -29,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('posts');
+        Schema::dropIfExists('guilds');
     }
 };
