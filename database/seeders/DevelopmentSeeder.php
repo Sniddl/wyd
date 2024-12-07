@@ -28,7 +28,7 @@ class DevelopmentSeeder extends Seeder
         ])->create();
 
         $jinx->posts()->create([
-            'bait' => "Never tell anyone your password! ... It's password"
+            'bait' => "Never tell anyone your password! ... Mine's password"
         ]);
 
         $jinx->posts()->create([

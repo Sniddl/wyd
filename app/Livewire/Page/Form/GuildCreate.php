@@ -7,7 +7,7 @@ use Livewire\Component;
 class GuildCreate extends Component
 {
 
-    public int $step = 2;
+    public int $step = 1;
 
     public function render()
     {
