@@ -14,11 +14,14 @@ return new class extends Migration
         Schema::create('guilds', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('identifier')->unique();
+            $table->string('identifier', 20)->unique();
+            $table->string('description')->nullable();
             $table->foreignId('owner_id')
                 ->nullable()
-                ->constrained('users', 'id');
+                ->constrained('users', 'id')
+                ->cascadeOnDelete();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

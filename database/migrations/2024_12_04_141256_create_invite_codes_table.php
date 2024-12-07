@@ -14,7 +14,8 @@ return new class extends Migration
         Schema::create('invite_codes', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')
-                ->constrained('users', 'id');
+                ->constrained('users', 'id')
+                ->cascadeOnDelete();
             $table->string('code')->unique();
             $table->timestamps();
         });

@@ -5,10 +5,15 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Thread extends Model
 {
+    use SoftDeletes;
+
     protected $table = 'channels';
+
+    protected $fillable = ['name', 'identifier', 'channel_id', 'guild_id', 'deleted_at'];
 
     public function getRouteKeyName()
     {
@@ -18,7 +23,7 @@ class Thread extends Model
     protected static function booted(): void
     {
         static::addGlobalScope('threads', function (Builder $builder) {
-            $builder->whereNotNull('channel_id');
+            $builder->whereNotNull('channel_id')->orderBy('order', 'asc');
         });
     }
 

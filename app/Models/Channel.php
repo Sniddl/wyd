@@ -7,11 +7,15 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Channel extends Model
 {
     /** @use HasFactory<\Database\Factories\ChannelFactory> */
     use HasFactory;
+    use SoftDeletes;
+
+    protected $fillable = ['name', 'identifier', 'channel_id', 'guild_id', 'deleted_at'];
 
     public function getRouteKeyName()
     {
@@ -21,7 +25,7 @@ class Channel extends Model
     protected static function booted(): void
     {
         static::addGlobalScope('channels', function (Builder $builder) {
-            $builder->whereNull('channel_id');
+            $builder->whereNull('channel_id')->orderBy('order', 'asc');
         });
     }
 

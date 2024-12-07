@@ -14,7 +14,8 @@ return new class extends Migration
         Schema::create('posts', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')
-                ->constrained('users', 'id');
+                ->constrained('users', 'id')
+                ->cascadeOnDelete();
 
             $table->foreignId('guild_id')
                 ->nullable()
