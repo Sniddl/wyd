@@ -22,7 +22,7 @@
             <x-navigation.button icon="home" href="/" label="Home" />
             <x-navigation.button icon="magnifying-glass" href="/explore" label="Explore" />
 
-            @isset($this->guild)
+            @if (isset($this->guild) && count($this->guild->channels))
                 <x-collapse separator title="Channels" icon="chat-bubble-left-right" class="px-2">
                     <ul>
                         @foreach ($this->guild->channels as $channel)
@@ -32,21 +32,25 @@
                                         @foreach ($channel->threads as $thread)
                                             <li>
                                                 <x-button flat gray :label="$thread->name" icon="hashtag"
-                                                    href="{{ $thread->href($this->guild, $channel) }}"
+                                                    href="{{ $this->guild->href($channel, $thread) }}"
                                                     class="w-full !justify-start !px-2 !py-1 !rounded" />
                                             </li>
                                         @endforeach
                                     </ul>
                                 </x-collapse>
                             @else
-                                <li class="px-3">{{ $channel->name }}</li>
+                                <li class="px-3">
+                                    <x-button flat gray :label="$channel->name" icon="hashtag"
+                                        href="{{ $this->guild->href($channel) }}"
+                                        class="w-full !justify-start !px-2 !py-1 !rounded" />
+                                </li>
                             @endif
                         @endforeach
                     </ul>
                 </x-collapse>
-            @endisset
+            @endif
 
-            <x-collapse separator title="Guilds" icon="squares-2x2">
+            <x-collapse separator title="Guilds" icon="squares-2x2" class="px-2">
                 <ul class="-mx-3 px-3">
                     @auth
                         <x-button flat gray class="flex items-center !justify-start !px-2 space-x-2 w-full"
@@ -54,15 +58,15 @@
                             Create Guild
                         </x-button>
                     @endauth
-                    @for ($i = 0; $i < 3; $i++)
+                    @foreach ($this->getGuildMemberships() as $guild)
                         <x-button flat gray class="flex items-center !justify-start !px-2 space-x-2 w-full"
-                            href="/guilds/skyblock" wire:navigate>
+                            href="{{ $guild->href() }}" wire:navigate>
                             <x-avatar class="w-8 h-8" label="AB" negative />
                             <div class="leading-tight">
-                                <div>SkyBlock</div>
+                                <div>g/{{ $guild->identifier }}</div>
                             </div>
                         </x-button>
-                    @endfor
+                    @endforeach
                 </ul>
             </x-collapse>
 

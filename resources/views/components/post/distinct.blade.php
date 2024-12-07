@@ -14,18 +14,9 @@
             <div>
 
                 <div class="flex items-center space-x-px ml-14 text-sm">
-                    @if ($post->model_type != 'void')
+                    @if ($post->guild)
                         <x-avatar xs label="AB" negative class="absolute w-3 h-3 -ml-8 mt-1 mr-1 z-10" />
-                        <span class="opacity-45">skyblock</span>
-                        <span class="opacity-45">.</span>
-                        <span class="opacity-45">net</span>
-                    @else
-                        {{-- <x-avatar xs white class="absolute w-3 h-3 -ml-8 mt-1 mr-1 z-10 !bg-white" icon="megaphone">
-                            <x-slot name="label">
-                                <x-icon name="megaphone" sm solid class="text-black" />
-                            </x-slot>
-                        </x-avatar> --}}
-                        {{-- <span class="opacity-45">**SHOUTING**</span> --}}
+                        <span class="opacity-45">/g/{{ $post->guild->identifier }}</span>
                     @endif
                 </div>
                 <div class="flex items-center space-x-1 ml-14">

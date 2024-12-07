@@ -3,13 +3,17 @@
 
         <div class="gap-6 w-72 pb-12 grid-discovery">
             <x-ui.card class="w-72" title="Newest Members">
-                @for ($i = 0; $i < 3; $i++)
+                @foreach ($this->getNewestMembers() as $member)
                     <div class="flex items-center justify-between space-x-2">
                         <div class="flex items-center space-x-2">
                             <x-avatar md label="AB" negative />
                             <div class="leading-tight">
-                                <div class="font-bold">Jinx</div>
-                                <div class="opacity-50">@jinx_lol</div>
+                                <div class="font-bold w-32 whitespace-nowrap overflow-hidden text-ellipsis">
+                                    {{ $member->name }}</div>
+                                <div class="opacity-50 w-32 whitespace-nowrap overflow-hidden text-ellipsis">
+                                    <span>@</span>
+                                    <span>{{ $member->username }}</span>
+                                </div>
                             </div>
 
                         </div>
@@ -18,7 +22,7 @@
                                 interaction="primary" />
                         @endauth
                     </div>
-                @endfor
+                @endforeach
             </x-ui.card>
 
             <x-ui.card class="w-72" title="Recent Tags">

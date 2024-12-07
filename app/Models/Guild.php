@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Attributes\ObservedBy;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
@@ -33,5 +34,19 @@ class Guild extends Model
     public function channels(): HasMany
     {
         return $this->hasMany(Channel::class)->whereNull('channel_id');
+    }
+
+    public function members(): BelongsToMany
+    {
+        return $this->belongsToMany(User::class, 'guild_user');
+    }
+
+    public function href($channel = null, $thread = null)
+    {
+        return route('thread', [
+            'guild' => $this,
+            'channel' => $channel,
+            'thread' => $thread,
+        ]);
     }
 }

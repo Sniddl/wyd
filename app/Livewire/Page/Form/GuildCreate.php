@@ -45,12 +45,15 @@ class GuildCreate extends Component
     {
         $this->form1->validate();
 
+        /** @var \App\Models\Guild $guild */
         $guild = Guild::create([
             'name' => $this->form1->name,
             'identifier' => $this->form1->url,
             'description' => $this->form1->description,
             'owner_id' => Auth::user()->id,
         ]);
+
+        $guild->members()->sync([Auth::user()->id]);
 
         $this->guildId = $guild->id;
         $this->prepareChannels();

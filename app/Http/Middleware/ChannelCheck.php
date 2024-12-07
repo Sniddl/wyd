@@ -19,7 +19,8 @@ class ChannelCheck
     {
         if ($request->route('channel')) {
             if (! $request->route('thread')) {
-                $channel = Channel::with('threads')->firstWhere('identifier', $request->route('channel'));
+                $channel = $request->route('channel')->loadMissing('threads');
+                // $channel = Channel::with('threads')->firstWhere('identifier', $request->route('channel'));
 
                 if ($channel->type == 'category') {
                     abort_if($channel->threads->count() <= 0, 404);

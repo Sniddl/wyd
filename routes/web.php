@@ -15,7 +15,7 @@ use Inertia\Inertia;
 
 Route::get("/", Home::class)->name('home');
 Route::get('/guilds', Guilds::class);
-Route::get("/guilds/{guild}/{channel?}/{thread?}", Channel::class)->name('thread')
+Route::get("/g/{guild}/{channel?}/{thread?}", Channel::class)->name('thread')
     ->middleware(['channel-check']);
 Route::get("/explore", Explore::class)->name('explore');
 Route::get("/notifications", Notifications::class)->name('notifications');
