@@ -1,3 +1,7 @@
+@props([
+    'join' => true,
+])
+
 <li class="block">
     <a class="p-3 bg-white hover:bg-gray-100 cursor-pointer block" href="/guilds/skyblock" wire:navigate>
         <div class="flex items-center justify-between space-x-2 flex-wrap space-y-2">
@@ -9,8 +13,10 @@
                 </div>
             </div>
             @auth
-                <x-button class="!py-1 !px-3 !gap-x-1" label="Join" rounded icon="plus" outline gray
-                    interaction="primary" />
+                @if ($join)
+                    <x-button class="!py-1 !px-3 !gap-x-1" label="Join" rounded icon="plus" outline gray
+                        interaction="primary" />
+                @endif
             @endauth
         </div>
     </a>

@@ -7,7 +7,7 @@ use Livewire\Attributes\On;
 
 trait InteractsWithModal
 {
-    public ?string $modalComponent = null;
+    public ?string $modalComponent = "page.form.guild-create";
 
     public function bootInteractsWithModal()
     {

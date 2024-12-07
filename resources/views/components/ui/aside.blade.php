@@ -48,6 +48,10 @@
 
             <x-collapse separator title="Guilds" icon="squares-2x2">
                 <ul class="-mx-3 px-3">
+                    <x-button flat gray class="flex items-center !justify-start !px-2 space-x-2 w-full"
+                        wire:click="openModal('page.form.guild-create')" icon="plus">
+                        Create Guild
+                    </x-button>
                     @for ($i = 0; $i < 3; $i++)
                         <x-button flat gray class="flex items-center !justify-start !px-2 space-x-2 w-full"
                             href="/guilds/skyblock" wire:navigate>
