@@ -24,3 +24,20 @@ body {
   display: grid;
   grid-template-rows: repeat(4, auto);
 }
+
+img.emoji {
+    height: 1rem;
+    width: 1rem;
+    margin: 0 .05em 0 .1em;
+    vertical-align: -0.1em;
+    display: inline-block;
+ }
+
+ .text-lg img.emoji {
+    height: 1.5rem;
+    width: 1.5rem;
+ }
+
+ .mention,.hashtag {
+    @apply text-primary-500 hover:underline relative z-20
+ }

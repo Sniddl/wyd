@@ -9,6 +9,7 @@ trait InteractsWithThread
 {
     use InteractsWithGuild;
     use InteractsWithChannel;
+    use InteractsWithDiscussion;
 
     #[Url()]
     public ?Thread $thread = null;

@@ -13,7 +13,7 @@ class Home extends Page
 
     public function getPosts()
     {
-        return Post::latest()->paginate();
+        return $this->posts()->paginate();
     }
 
     public function render()

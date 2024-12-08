@@ -26,13 +26,14 @@
             </x-ui.card>
 
             <x-ui.card class="w-72" title="Recent Tags">
-                @for ($i = 0; $i < 50; $i++)
-                    <a href="#" class="underline text-primary-500">{{ fake()->word() }}</a>
-                @endfor
+                @foreach ($this->getMostRecentTags() as $tag)
+                    <a href="{{ route('hashtag', ['hashtag' => $tag->name]) }}"
+                        class="underline text-primary-500">#{{ $tag->name }}</a>
+                @endforeach
             </x-ui.card>
 
             <div>
-                © {{ now()->year }} Snow Builds.
+                © {{ now()->year }} wyd.gg
             </div>
         </div>
     </div>

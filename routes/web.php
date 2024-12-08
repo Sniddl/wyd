@@ -7,9 +7,11 @@ use App\Livewire\Page\Explore;
 use App\Livewire\Page\Guilds;
 use App\Livewire\Page\Home;
 use App\Livewire\Page\Notifications;
+use App\Livewire\Page\Discussion;
 use App\Livewire\Page\Premium;
 use App\Livewire\Page\Profile;
 use App\Livewire\Page\Settings;
+use App\Livewire\Page\Trend;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
@@ -21,8 +23,10 @@ Route::get("/explore", Explore::class)->name('explore');
 Route::get("/notifications", Notifications::class)->name('notifications');
 Route::get("/premium", Premium::class);
 Route::get("/bookmarks", Bookmarks::class);
-Route::get("/profile", Profile::class);
+Route::get("/u/{user}", Profile::class)->name('profile');
 Route::get("/settings", Settings::class);
+Route::get('/p/{post?}', Discussion::class)->name('post');
+Route::get('/t/{hashtag?}', Trend::class)->name('hashtag');
 
 Route::get("/dashboard", function () {
     return Inertia::render("Dashboard");

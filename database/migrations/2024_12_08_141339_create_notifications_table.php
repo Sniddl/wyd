@@ -11,33 +11,20 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('posts', function (Blueprint $table) {
+        Schema::create('notifications', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')
                 ->constrained('users', 'id')
                 ->cascadeOnDelete();
-
-            $table->foreignId('guild_id')
-                ->nullable()
-                ->constrained('guilds', 'id')
+            $table->foreignId('creator_id')
+                ->constrained('users', 'id')
                 ->cascadeOnDelete();
-
-            $table->foreignId('channel_id')
-                ->nullable()
-                ->constrained('channels', 'id')
-                ->cascadeOnDelete();
-
             $table->foreignId('post_id')
                 ->nullable()
                 ->constrained('posts', 'id')
                 ->cascadeOnDelete();
-
-            $table->string('bait');
-            $table->text('enriched_bait')->nullable();
-            $table->text('content')->nullable();
-            $table->mediumText('enriched_content')->nullable();
+            $table->string('type');
             $table->timestamps();
-            $table->softDeletes();
         });
     }
 
@@ -46,6 +33,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('posts');
+        Schema::dropIfExists('notifications');
     }
 };

@@ -12,6 +12,7 @@ trait InteractsWithGuilds
     {
         /** @var \App\Models\User $user */
         $user = Auth::user();
-        return $user->guilds()->get();
+
+        return collect($user ? $user->guilds()->get() : null);
     }
 }

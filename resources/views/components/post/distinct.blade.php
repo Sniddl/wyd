@@ -3,7 +3,7 @@
     'replyTo' => null,
 ])
 
-<li class="p-3 space-y-1 bg-white">
+<li class="js-post p-3 space-y-1 bg-white relative" x-on:click="Livewire.navigate('{{ route('post', $post) }}')">
     <div class="flex items-center justify-between relative -mr-2">
         <div class="flex items-center">
             <x-avatar @class([
@@ -43,13 +43,28 @@
         <x-button class="absolute right-0 !p-2" rounded icon="ellipsis-horizontal" flat gray interaction="primary" />
     </div>
     <div class="ml-14">
-        <div>{{ $post->bait }}</div>
+        <div>{!! $post->enriched_bait ?? $post->bait !!}</div>
 
         <div class="flex items-center justify-between -mx-2 mt-3">
-            <x-button class="!py-1 !px-2" label="123K" rounded icon="heart" flat gray interaction="primary" />
-            <x-button class="!py-1 !px-2" label="123K" rounded icon="chat-bubble-left" flat gray
+            <x-dropdown position="right" width="sm">
+                <x-slot name="trigger">
+                    <x-button class="!py-1 !px-2" label="123K" rounded icon="heart" flat gray interaction="negative"
+                        wire:click="like($post->id)" />
+                </x-slot>
+                <x-dropdown.item class="!bg-white space-x-2 !justify-center block !p-0">
+                    <div class="-mx-8 flex items-center justify-center">
+                        <x-button class="!p-2 text-lg" rounded label="❤️" flat gray interaction="primary" />
+                        <x-button class="!p-2 text-lg" rounded label="🦄" flat gray interaction="primary" />
+                        <x-button class="!p-2 text-lg" rounded label="🤯" flat gray interaction="primary" />
+                    </div>
+                </x-dropdown.item>
+            </x-dropdown>
+            <x-button class="!py-1 !px-2" :label="Number::abbreviate($post->replies_count ?? $post->replies()->count())" rounded icon="chat-bubble-left" flat gray
                 interaction="primary" />
-            <x-button class="!py-1 !px-2" label="123K" rounded icon="chart-bar" flat gray interaction="primary" />
+            <div class="!py-1 !px-2 space-x-2 flex items-center text-sm text-gray-600">
+                <x-icon name="chart-bar" class="w-4 h-4" />
+                <span>123K</span>
+            </div>
             <div class="space-x-1">
                 <x-button class="!p-2" rounded icon="arrow-up-tray" flat gray interaction="primary" />
             </div>

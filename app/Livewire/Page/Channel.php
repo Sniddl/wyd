@@ -15,7 +15,7 @@ class Channel extends Page
 
     public function getPosts()
     {
-        return Post::latest()
+        return $this->posts()
             ->where('guild_id', $this->guild->id)
             ->when(
                 $this->channel && $this->thread,

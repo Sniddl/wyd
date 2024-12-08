@@ -10,3 +10,8 @@ document.addEventListener("alpine:init", () => {
   Alpine.data("collapse", collapse);
   Alpine.data("channelCreate", channelCreate);
 });
+
+twemoji.parse(document.body, {
+  folder: "svg",
+  ext: ".svg",
+});
