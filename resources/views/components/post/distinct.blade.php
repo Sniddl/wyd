@@ -1,16 +1,24 @@
 @props([
     'post' => null,
-    'replyTo' => null,
+    'label' => null,
+    'reply' => false,
+    'chain' => false,
 ])
 
-<li class="js-post p-3 space-y-1 bg-white relative" x-on:click="Livewire.navigate('{{ route('post', $post) }}')">
+<li class="js-post p-3 space-y-1 bg-white relative overflow-hidden"
+    x-on:click="Livewire.navigate('{{ route('post', $post) }}')">
     <div class="flex items-center justify-between relative -mr-2">
         <div class="flex items-center">
-            <x-avatar @class([
-                'absolute hover:z-20 focus:z-20',
-                'mt-6' => !$replyTo,
-                'mt-0' => $replyTo,
-            ]) lg label="{{ str($post->author->username[0])->upper() }}" negative />
+            <div @class([
+                'shrink-0 inline-flex absolute w-12 h-12',
+                'reply' => $reply,
+                'chain' => $chain,
+                'mt-6' => !$label?->isNotEmpty(),
+                'mt-0' => $label?->isNotEmpty(),
+            ])>
+                <x-avatar @class(['absolute hover:z-20 focus:z-20 avatar']) lg label="{{ str($post->author->username[0])->upper() }}"
+                    negative />
+            </div>
             <div>
 
                 <div class="flex items-center space-x-px ml-14 text-sm">
@@ -29,13 +37,9 @@
                         <x-icon name="megaphone" outline class="text-black w-4 h-4 opacity-45" />
                     @endif
                 </div>
-                @if ($replyTo)
+                @if ($label?->isNotEmpty())
                     <div class="flex items-center space-x-1 ml-14 text-sm">
-                        <span class="opacity-50">Replying to</span>
-                        <span class="text-primary-500 flex items-center">
-                            <span>@</span>
-                            <a href="#" class="text-primary-500">{{ $replyTo }}</a>
-                        </span>
+                        {{ $label }}
                     </div>
                 @endif
             </div>

@@ -16,60 +16,52 @@ class Enricher
         $parser = new Parser();
         $ast = $parser->parse($content);
 
-        $pipeline = [
-            fn($post, $type, $node) => $this->plaintext($post, $type, $node),
-            fn($post, $type, $node) => $this->hashtag($post, $type, $node),
-            fn($post, $type, $node) => $this->mention($post, $type, $node),
-        ];
+        if ($post->post_id) {
+            $post->loadMissing('post');
+            Notification::create([
+                'user_id' => $post->post->user_id,
+                'post_id' => $post->id,
+                'creator_id' => $post->user_id,
+                'type' => 'reply',
+            ]);
+        }
 
-        $text = [];
+        $grouping = collect($ast)->groupBy('type');
 
-        foreach ($ast as $node) {
-            foreach ($pipeline as $method) {
-                $type = data_get($node, 'type');
-                if ($result = $method($post, $type, $node)) {
-                    $text[] = data_get($result, 'enriched');
-                    break;
-                }
+        foreach ($grouping as $name => $data) {
+            if (method_exists($this, $name)) {
+                call_user_func([$this, $name], $post, $data);
             }
         }
 
-        return implode(' ', $text);
+        return collect($ast)->pluck('enriched')->join(' ');
     }
 
-    public function hashtag(Post $post, string $type, array $data): ?array
+    public function hashtag(Post $post,  $group): void
     {
-        if ($type === 'hashtag') {
-            if ($this->db) {
+        if ($this->db) {
+            foreach ($group as $data) {
                 $hashtag = Hashtag::firstOrCreate([
                     'name' => data_get($data, 'hashtag')
                 ]);
 
                 $post->hashtags()->attach($hashtag);
             }
-            return $data;
         }
-        return null;
     }
 
-    public function mention(Post $post, string $type, array $data): ?array
+    public function mention(Post $post, $group): void
     {
-        if ($type === 'mention') {
-            if ($this->db) {
+        if ($this->db) {
+            $groups = collect($group)->groupBy('user');
+            foreach ($groups as $userId => $group) {
                 Notification::create([
-                    'user_id' => data_get($data, 'user'),
+                    'user_id' => $userId,
                     'post_id' => $post->id,
                     'creator_id' => $post->user_id,
-                    'type' => $type,
+                    'type' => 'mention',
                 ]);
             }
-            return $data;
         }
-        return null;
-    }
-
-    public function plaintext(Post $post, string $type, array $data): ?array
-    {
-        return $type === 'plaintext' ? $data : null;
     }
 }

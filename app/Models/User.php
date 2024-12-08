@@ -67,4 +67,9 @@ class User extends Authenticatable
     {
         return $this->belongsToMany(Guild::class, 'guild_user');
     }
+
+    public function notifications()
+    {
+        return $this->hasMany(Notification::class);
+    }
 }

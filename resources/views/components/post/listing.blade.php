@@ -12,7 +12,7 @@
             @endif
         @empty
             <li class="bg-white p-3 flex items-center justify-center">
-                <span>No posts were found 😭</span>
+                <span>No replies were found 😭</span>
             </li>
         @endforelse
     </ul>

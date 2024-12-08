@@ -24,6 +24,8 @@ return new class extends Migration
                 ->constrained('posts', 'id')
                 ->cascadeOnDelete();
             $table->string('type');
+            $table->timestamp('read_at')->nullable();
+            $table->timestamp('sent_at')->nullable();
             $table->timestamps();
         });
     }

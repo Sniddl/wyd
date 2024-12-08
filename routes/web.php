@@ -20,7 +20,9 @@ Route::get('/guilds', Guilds::class);
 Route::get("/g/{guild}/{channel?}/{thread?}", Channel::class)->name('thread')
     ->middleware(['channel-check']);
 Route::get("/explore", Explore::class)->name('explore');
-Route::get("/notifications", Notifications::class)->name('notifications');
+Route::get("/notifications", Notifications::class)
+    ->name('notifications')
+    ->middleware('auth');
 Route::get("/premium", Premium::class);
 Route::get("/bookmarks", Bookmarks::class);
 Route::get("/u/{user}", Profile::class)->name('profile');

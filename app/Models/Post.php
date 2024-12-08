@@ -27,6 +27,11 @@ class Post extends Model
         return $this->belongsTo(Guild::class);
     }
 
+    public function post(): BelongsTo
+    {
+        return $this->belongsTo(Post::class);
+    }
+
     public function replies()
     {
         return $this->hasMany(Post::class);

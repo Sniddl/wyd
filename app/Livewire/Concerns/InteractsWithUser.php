@@ -18,5 +18,6 @@ trait InteractsWithUser
     {
         Auth::logout();
         $this->dispatch('unauthenticated');
+        $this->redirect(route('login'));
     }
 }

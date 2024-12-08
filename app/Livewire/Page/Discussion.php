@@ -21,6 +21,6 @@ class Discussion extends Page
 
     public function getPosts()
     {
-        return $this->post->replies()->withCount('replies')->paginate();
+        return $this->post->replies()->with('post')->withCount('replies')->paginate();
     }
 }

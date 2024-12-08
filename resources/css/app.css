@@ -41,3 +41,23 @@ img.emoji {
  .mention,.hashtag {
     @apply text-primary-500 hover:underline relative z-20
  }
+
+ .chain::before {
+    content: '';
+    display: block;
+    position: absolute;
+    width: 3px;
+    height: 100vh;
+    background: theme('colors.gray.200');
+    border-radius: 50rem;
+    left: 50%;
+    transform: translateX(-50%);
+ }
+
+ .chain:not(.reply)::before {
+    top: calc(100% + 2px);
+ }
+
+.chain.reply::before {
+    bottom: calc(100% + 2px);
+ }

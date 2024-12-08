@@ -25,11 +25,14 @@
                 @endforeach
             </x-ui.card>
 
+
             <x-ui.card class="w-72" title="Recent Tags">
-                @foreach ($this->getMostRecentTags() as $tag)
+                @forelse ($this->getMostRecentTags() as $tag)
                     <a href="{{ route('hashtag', ['hashtag' => $tag->name]) }}"
                         class="underline text-primary-500">#{{ $tag->name }}</a>
-                @endforeach
+                @empty
+                    No recent tags.
+                @endforelse
             </x-ui.card>
 
             <div>
