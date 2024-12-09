@@ -11,7 +11,28 @@ document.addEventListener("alpine:init", () => {
   Alpine.data("channelCreate", channelCreate);
 });
 
-twemoji.parse(document.body, {
-  folder: "svg",
-  ext: ".svg",
+window.parseEmojis = function (el) {
+  twemoji.parse(el ?? document.body, {
+    folder: "svg",
+    ext: ".svg",
+  });
+};
+document.addEventListener("DOMContentLoaded", () => {
+  document.addEventListener("livewire:navigated", () => {
+    parseEmojis();
+  });
+
+  //   Livewire.hook("component.initialized", (event) => {
+  //     console.log("loaded");
+  //   });
+
+  //   Livewire.hook("component.update", (event) => {
+  //     console.log("loaded");
+  //   });
+
+  Livewire.hook("morphed", ({ el, component }) => {
+    parseEmojis();
+  });
+
+  parseEmojis();
 });

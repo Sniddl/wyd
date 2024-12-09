@@ -15,14 +15,17 @@
 
     <!-- Scripts -->
     {{-- @routes --}}
-    @wireUiScripts
     @vite(['resources/js/app.js'])
+
+
 
 
 </head>
 
 <body class="font-sans antialiased">
     {{ $slot }}
+    @livewireScripts
+    @wireUiScripts
 </body>
 
 </html>

@@ -60,13 +60,14 @@
             <x-dropdown position="right" width="sm">
                 <x-slot name="trigger">
                     <x-button class="!py-1 !px-2" label="123K" rounded icon="heart" flat gray interaction="negative"
-                        wire:click="like($post->id)" />
+                        x-on:click.stop="positionable.toggle();setTimeout(() => parseEmojis('.emojis'), 1)" />
                 </x-slot>
                 <x-dropdown.item class="!bg-white space-x-2 !justify-center block !p-0">
-                    <div class="-mx-8 flex items-center justify-center">
-                        <x-button class="!p-2 text-lg" rounded label="❤️" flat gray interaction="primary" />
-                        <x-button class="!p-2 text-lg" rounded label="🦄" flat gray interaction="primary" />
-                        <x-button class="!p-2 text-lg" rounded label="🤯" flat gray interaction="primary" />
+                    <div class="-mx-8 flex items-center justify-center emojis">
+                        @foreach ($this->getAvailableReactions() as $reaction)
+                            <x-button class="!p-2 text-lg" rounded :label="$reaction->emoji" flat gray interaction="primary"
+                                x-on:click.stop="$wire.react({{ $post->id }},{{ $reaction->id }});positionable.close()" />
+                        @endforeach
                     </div>
                 </x-dropdown.item>
             </x-dropdown>

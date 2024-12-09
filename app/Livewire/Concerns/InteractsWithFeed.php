@@ -4,6 +4,8 @@ namespace App\Livewire\Concerns;
 
 use App\Livewire\Forms\ShoutForm;
 use App\Models\Post;
+use App\Models\PostReaction;
+use App\Models\Reaction;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Facades\Auth;
 
@@ -49,5 +51,24 @@ trait InteractsWithFeed
             ->withCount('replies');
     }
 
-    public function like() {}
+    public function getAvailableReactions()
+    {
+        return Reaction::whereNull('guild_id')->whereNull('channel_id')->get();
+    }
+
+    public function react($postId, $reactionId)
+    {
+        $reaction = PostReaction::withTrashed()->firstOrNew([
+            'user_id' => Auth::user()->id,
+            'post_id' => $postId,
+            'reaction_id' => $reactionId
+        ]);
+
+        if ($reaction->id && !$reaction->deleted_at) {
+            $reaction->delete();
+        } else {
+            $reaction->deleted_at = null;
+            $reaction->save();
+        }
+    }
 }
