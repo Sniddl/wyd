@@ -7,8 +7,7 @@
     'chainMiddle' => false,
 ])
 
-<li class="js-post p-3 space-y-1 bg-white relative overflow-hidden"
-    x-on:click="Livewire.navigate('{{ route('post', $post) }}')">
+<li class="js-post p-3 space-y-1 bg-white relative overflow-hidden" x-on:click="navigate('{{ route('post', $post) }}')">
     <div class="flex items-center justify-between relative -mr-2">
         <div class="flex items-center">
             <div @class([
@@ -20,20 +19,24 @@
                 'mt-6' => !$label?->isNotEmpty(),
                 'mt-0' => $label?->isNotEmpty(),
             ])>
-                <x-avatar @class(['absolute hover:z-20 focus:z-20 avatar']) lg label="{{ str($post->author->username[0])->upper() }}"
-                    negative />
+                <x-avatar @class(['absolute hover:z-20 focus:z-20 avatar cursor-pointer']) lg label="{{ str($post->author->username[0])->upper() }}" negative
+                    href="{{ route('profile', $post->author->username) }}" wire:navigate x-on:click.stop="" />
             </div>
             <div>
 
-                <div class="flex items-center space-x-px ml-14 text-sm">
-                    @if ($post->guild)
+                @if ($post->guild)
+                    <div class="flex items-center space-x-px ml-14 text-sm cursor-pointer" x-on:click.stop=""
+                        href="{{ route('guild', $post->guild?->identifier) }}" wire:navigate>
                         <x-avatar xs label="AB" negative class="absolute w-3 h-3 -ml-8 mt-1 mr-1 z-10" />
-                        <span class="opacity-45">/g/{{ $post->guild->identifier }}</span>
-                    @endif
-                </div>
+                        <span class="opacity-45 hover:underline">/g/{{ $post->guild->identifier }}</span>
+                    </div>
+                @endif
                 <div class="flex items-center space-x-1 ml-14">
-                    <span class="font-bold">{{ $post->author->name }}</span>
-                    <span class="opacity-45 flex"><span>@</span>{{ $post->author->username }}</span>
+                    <span class="flex items-center space-x-1 cursor-pointer" x-on:click.stop=""
+                        href="{{ route('profile', $post->author->username) }}" wire:navigate>
+                        <span class="font-bold hover:underline">{{ $post->author->name }}</span>
+                        <span class="opacity-45 flex"><span>@</span>{{ $post->author->username }}</span>
+                    </span>
                     <span class="opacity-45">·</span>
                     <span class="opacity-45">{{ $post->created_at->diffForHumans(short: true) }}</span>
                     @if ($post->model_type == 'void')

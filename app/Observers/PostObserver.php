@@ -3,7 +3,7 @@
 namespace App\Observers;
 
 use App\Models\Post;
-use App\Services\ContentParsing\Enricher;
+use App\Services\Content\Enricher;
 
 class PostObserver
 {

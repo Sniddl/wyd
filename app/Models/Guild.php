@@ -43,7 +43,7 @@ class Guild extends Model
 
     public function href($channel = null, $thread = null)
     {
-        return route('thread', [
+        return route('guild', [
             'guild' => $this,
             'channel' => $channel,
             'thread' => $thread,

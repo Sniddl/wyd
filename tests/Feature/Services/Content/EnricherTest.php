@@ -3,7 +3,7 @@
 namespace Tests\Feature\Services\Content;
 
 use App\Models\Post;
-use App\Services\ContentParsing\Enricher;
+use App\Services\Content\Enricher;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;

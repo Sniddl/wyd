@@ -15,9 +15,9 @@
                     'hidden': !asideOpen
                 }">
             </div>
-            <div class="row-start-1 col-start-1 sticky top-0 z-40 max-w-72 w-72 md:block md:!relative"
+            <div class="row-start-1 col-start-1 sticky !top-0 z-40 max-w-72 w-72 md:block md:sticky"
                 x-bind:class="{
-                    '!absolute top-0 bottom-0': asideOpen,
+                    '!fixed top-0 bottom-0': asideOpen,
                     'hidden': !asideOpen
                 }">
 

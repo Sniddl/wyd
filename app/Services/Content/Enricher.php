@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Services\ContentParsing;
+namespace App\Services\Content;
 
 use App\Models\Hashtag;
 use App\Models\Notification;

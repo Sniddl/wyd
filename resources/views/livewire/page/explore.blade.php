@@ -2,9 +2,9 @@
     <x-input placeholder="Search" icon="magnifying-glass" />
     <x-ui.card title="Newest Guilds">
         <ul>
-            @for ($i = 0; $i < 3; $i++)
-                <x-guild.distinct />
-            @endfor
+            @foreach ($this->getNewestGuilds() as $guild)
+                <x-guild.distinct :$guild />
+            @endforeach
         </ul>
     </x-ui.card>
 </x-layout.page>

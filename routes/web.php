@@ -11,6 +11,8 @@ use App\Livewire\Page\Notifications;
 use App\Livewire\Page\Discussion;
 use App\Livewire\Page\Premium;
 use App\Livewire\Page\Profile;
+use App\Livewire\Page\Profile\Posts;
+use App\Livewire\Page\Profile\Replies;
 use App\Livewire\Page\Settings;
 use App\Livewire\Page\Trend;
 use Illuminate\Support\Facades\Route;
@@ -18,7 +20,7 @@ use Inertia\Inertia;
 
 Route::get("/", Home::class)->name('home');
 Route::get('/guilds', Guilds::class);
-Route::get("/g/{guild}/{channel?}/{thread?}", Channel::class)->name('thread')
+Route::get("/g/{guild}/{channel?}/{thread?}", Channel::class)->name('guild')
     ->middleware(['channel-check']);
 Route::get("/explore", Explore::class)->name('explore');
 Route::get("/notifications", Notifications::class)
@@ -26,7 +28,8 @@ Route::get("/notifications", Notifications::class)
     ->middleware('auth');
 Route::get("/premium", Premium::class);
 Route::get("/bookmarks", Bookmarks::class);
-Route::get("/u/{user}", Profile::class)->name('profile');
+Route::get("/u/{user}", Posts::class)->name('profile');
+Route::get("/u/{user}/replies", Replies::class)->name('profile.replies');
 Route::get("/settings", Settings::class);
 Route::get('/p/{post?}', Discussion::class)->name('post');
 Route::get('/d/{post?}', Chain::class)->name('chain');

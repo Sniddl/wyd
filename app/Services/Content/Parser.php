@@ -15,7 +15,7 @@ class Parser
 
     public function parse(string $string): array
     {
-        $words = explode(' ', $string);
+        $words = explode(' ', e($string));
         $pipeline = [
             fn($word) => $this->hashtag($word),
             fn($word) => $this->mention($word),
@@ -49,7 +49,7 @@ class Parser
                     'hashtag' => $hashtag,
                     'original' => $word,
                     'enriched' => trim(<<<HTML
-                        <a class="hashtag" href="$href">#{$hashtag}</a>{$after}
+                        <a {{ 'e' }} class="hashtag" href="$href" x-on:click.stop="" wire:navigate>#{$hashtag}</a>{$after}
                     HTML),
                 ];
             }

@@ -86,7 +86,7 @@ class GuildCreate extends Component
                 ])->save();
             }
         }
-        $this->redirect(route('thread', compact('guild')));
+        $this->redirect(route('guild', compact('guild')));
     }
 
     public function deleteChannel($channelId)

@@ -27,7 +27,8 @@
                         <x-dropdown.item label="Guilds" icon="squares-2x2" href="/guilds" wire:navigate />
                         <x-dropdown.item label="Premium" icon="check-badge" href="/premium" wire:navigate />
                         <x-dropdown.item label="Bookmarks" icon="bookmark" href="/bookmarks" wire:navigate />
-                        <x-dropdown.item label="Profile" icon="user" href="/profile" wire:navigate />
+                        <x-dropdown.item label="Profile" icon="user" href="{{ route('profile', Auth::user()) }}"
+                            wire:navigate />
                         <x-dropdown.item label="Settings" icon="adjustments-horizontal" href="/settings" wire:navigate />
                         <x-dropdown.item label="Logout" separator icon="arrow-right-start-on-rectangle"
                             class="!text-negative-500" wire:click="logout" />

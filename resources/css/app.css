@@ -4,7 +4,7 @@
 
 html,
 body {
-  background-color: theme(colors.gray.100);
+  background-color: theme('colors.gray.50');
   background-image: url(/storage/img/pattern/cream_pixels.webp);
 }
 
