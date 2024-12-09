@@ -5,9 +5,11 @@
     'chainTop' => false,
     'chainBottom' => false,
     'chainMiddle' => false,
+    'reactions' => null,
 ])
 
-<li class="js-post p-3 space-y-1 bg-white relative overflow-hidden" x-on:click="navigate('{{ route('post', $post) }}')">
+<li {{ $attributes->except(['class', 'x-on:click', 'x-data']) }} x-data="post"
+    class="js-post p-3 space-y-1 bg-white relative overflow-hidden" x-on:click="navigate('{{ route('post', $post) }}')">
     <div class="flex items-center justify-between relative -mr-2">
         <div class="flex items-center">
             <div @class([
@@ -59,14 +61,23 @@
         <div class="flex items-center justify-between -mx-2 mt-3">
             <x-dropdown position="right" width="sm">
                 <x-slot name="trigger">
-                    <x-button class="!py-1 !px-2" label="123K" rounded icon="heart" flat gray interaction="negative"
-                        x-on:click.stop="positionable.toggle();setTimeout(() => parseEmojis('.emojis'), 1)" />
+                    <x-button class="!py-1 !px-2" rounded flat gray interaction="negative"
+                        x-on:click.stop="positionable.toggle();setTimeout(() => parseEmojis('.emojis'), 1)">
+                        <slot name="label">
+                            <div class="flex space-x-2 items-center">
+                                <span dir="rtl" x-ref="reactions"
+                                    class="space-x-[-0.3rem] space-x-reverse flex items-start">{{ data_get($reactions ?? [], 'emojis', '❤️') }}</span>
+                                <span class="inline-block"
+                                    x-ref="reactionsCount">{{ data_get($reactions ?? [], 'total', 0) }}</span>
+                            </div>
+                        </slot>
+                    </x-button>
                 </x-slot>
                 <x-dropdown.item class="!bg-white space-x-2 !justify-center block !p-0">
                     <div class="-mx-8 flex items-center justify-center emojis">
                         @foreach ($this->getAvailableReactions() as $reaction)
                             <x-button class="!p-2 text-lg" rounded :label="$reaction->emoji" flat gray interaction="primary"
-                                x-on:click.stop="$wire.react({{ $post->id }},{{ $reaction->id }});positionable.close()" />
+                                x-on:click.stop="react({{ $post->id }},{{ $reaction->id }})" />
                         @endforeach
                     </div>
                 </x-dropdown.item>

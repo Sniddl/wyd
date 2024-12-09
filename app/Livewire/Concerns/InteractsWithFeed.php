@@ -8,6 +8,8 @@ use App\Models\PostReaction;
 use App\Models\Reaction;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Number;
 
 trait InteractsWithFeed
 {
@@ -56,19 +58,21 @@ trait InteractsWithFeed
         return Reaction::whereNull('guild_id')->whereNull('channel_id')->get();
     }
 
-    public function react($postId, $reactionId)
+    public function getReactionsForPosts($posts)
     {
-        $reaction = PostReaction::withTrashed()->firstOrNew([
-            'user_id' => Auth::user()->id,
-            'post_id' => $postId,
-            'reaction_id' => $reactionId
-        ]);
-
-        if ($reaction->id && !$reaction->deleted_at) {
-            $reaction->delete();
-        } else {
-            $reaction->deleted_at = null;
-            $reaction->save();
-        }
+        $reactions = Reaction::query()
+            ->select("post_reaction.post_id", "emoji", DB::raw("COUNT(*) as count"))
+            ->join("post_reaction", "reactions.id", "=", "post_reaction.reaction_id")
+            ->whereIn("post_reaction.post_id", $posts->pluck('id'))
+            ->whereNull("post_reaction.deleted_at")
+            ->groupBy("post_reaction.post_id", "emoji")
+            ->orderBy("count", "asc")
+            ->get()
+            ->groupBy("post_id")
+            ->map(fn($group) => [
+                'emojis' => $group->pluck('emoji')->join(' '),
+                'total' => Number::abbreviate($group->sum('count'))
+            ]);
+        return $reactions;
     }
 }

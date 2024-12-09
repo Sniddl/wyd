@@ -49,4 +49,11 @@ class Post extends Model
         $this->save();
         return $this;
     }
+
+    public function reactions()
+    {
+        return $this->belongsToMany(Reaction::class, 'post_reaction')
+            ->wherePivotNull('deleted_at')
+            ->withPivot(['user_id']);
+    }
 }
