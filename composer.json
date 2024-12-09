@@ -13,6 +13,7 @@
         "laravel/tinker": "^2.9",
         "livewire/livewire": "^3.5",
         "simplesoftwareio/simple-qrcode": "^4.2",
+        "staudenmeir/laravel-cte": "^1.11",
         "tightenco/ziggy": "^2.0",
         "wireui/wireui": "^2.2"
     },

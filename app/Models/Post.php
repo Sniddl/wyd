@@ -13,7 +13,7 @@ use Illuminate\Database\Eloquent\Relations\MorphToMany;
 #[ObservedBy(PostObserver::class)]
 class Post extends Model
 {
-    protected $fillable = ['bait', 'content', 'guild_id', 'channel_id', 'post_id', 'user_id'];
+    protected $fillable = ['bait', 'content', 'guild_id', 'channel_id', 'post_id', 'user_id', 'depth'];
 
     protected $with = ['guild'];
 

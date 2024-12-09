@@ -2,9 +2,16 @@
     <div class="space-y-3  w-full">
         <div class="flex items-center justify-between space-x-2 relative h-12">
             <div class="z-10 flex items-center space-x-2">
-                <x-button class="!p-2 bg-gray-50 block md:hidden" x-on:click="toggleSidebar" rounded icon="bars-3" flat
-                    gray interaction="primary" />
+                @unless ($this->back)
+                    <x-button class="!p-2 bg-gray-50 block md:hidden" x-on:click="toggleSidebar" rounded icon="bars-3" flat
+                        gray interaction="primary" />
+                @else
+                    <x-button class="!p-2 bg-gray-50" rounded icon="arrow-left" flat gray interaction="primary"
+                        :href="$this->back" wire:navigate />
+                @endunless
+
                 <span class="leading-none">{{ $this->getTitle() }}</span>
+
             </div>
             <span class="absolute left-0 right-0 flex items-center justify-center"></span>
             <div class="flex items-center space-x-2 z-10">

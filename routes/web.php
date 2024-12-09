@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ProfileController;
 use App\Livewire\Page\Bookmarks;
+use App\Livewire\Page\Chain;
 use App\Livewire\Page\Channel;
 use App\Livewire\Page\Explore;
 use App\Livewire\Page\Guilds;
@@ -28,6 +29,7 @@ Route::get("/bookmarks", Bookmarks::class);
 Route::get("/u/{user}", Profile::class)->name('profile');
 Route::get("/settings", Settings::class);
 Route::get('/p/{post?}', Discussion::class)->name('post');
+Route::get('/d/{post?}', Chain::class)->name('chain');
 Route::get('/t/{hashtag?}', Trend::class)->name('hashtag');
 
 Route::get("/dashboard", function () {

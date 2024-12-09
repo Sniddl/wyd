@@ -1,8 +1,10 @@
 @props([
     'post' => null,
     'label' => null,
-    'reply' => false,
     'chain' => false,
+    'chainTop' => false,
+    'chainBottom' => false,
+    'chainMiddle' => false,
 ])
 
 <li class="js-post p-3 space-y-1 bg-white relative overflow-hidden"
@@ -11,8 +13,10 @@
         <div class="flex items-center">
             <div @class([
                 'shrink-0 inline-flex absolute w-12 h-12',
-                'reply' => $reply,
                 'chain' => $chain,
+                'chain-top' => $chainTop,
+                'chain-bottom' => $chainBottom,
+                'chain-middle' => $chainMiddle,
                 'mt-6' => !$label?->isNotEmpty(),
                 'mt-0' => $label?->isNotEmpty(),
             ])>

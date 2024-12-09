@@ -54,10 +54,15 @@ img.emoji {
     transform: translateX(-50%);
  }
 
- .chain:not(.reply)::before {
+ .chain.chain-bottom::before {
     top: calc(100% + 2px);
  }
 
-.chain.reply::before {
+.chain.chain-top::before {
     bottom: calc(100% + 2px);
+ }
+
+ .chain.chain-middle::before {
+    top: -1rem;
+    bottom: 0;
  }

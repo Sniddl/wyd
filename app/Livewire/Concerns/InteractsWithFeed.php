@@ -25,7 +25,13 @@ trait InteractsWithFeed
             'guild_id' => $this->post?->guild_id ?? $this->guild?->id,
             'channel_id' => $this->post?->channel_id ?? $this->thread?->id ?? $this->channel?->id,
             'post_id' => $this->post?->id,
+            'depth' => ($this->post?->depth ?? -1) + 1,
         ]);
+
+        if ($this->post) {
+            $this->post->replyCount += 1;
+            $this->post->save();
+        }
 
         $this->shoutForm->reset();
         $this->dispatch('shout');
@@ -35,7 +41,11 @@ trait InteractsWithFeed
     {
         return Post::query()
             ->latest()
-            ->whereNull('post_id')
+            ->where(function ($query) {
+                $query->whereNull('post_id')
+                    ->orWhere('replyCount', '>=', 2);
+            })
+
             ->withCount('replies');
     }
 

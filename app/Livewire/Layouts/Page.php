@@ -21,6 +21,8 @@ abstract class Page extends Component
 
     public ?string $title = null;
 
+    public ?string $back = null;
+
     public function getTitle()
     {
         return $this->title ?? str(class_basename(static::class))->title();

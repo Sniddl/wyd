@@ -36,6 +36,8 @@ return new class extends Migration
             $table->text('enriched_bait')->nullable();
             $table->text('content')->nullable();
             $table->mediumText('enriched_content')->nullable();
+            $table->integer('depth')->default(0);
+            $table->integer('replyCount')->default(0);
             $table->timestamps();
             $table->softDeletes();
         });
