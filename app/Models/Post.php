@@ -9,10 +9,13 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\MorphToMany;
+use Laravel\Scout\Searchable;
 
 #[ObservedBy(PostObserver::class)]
 class Post extends Model
 {
+    use Searchable;
+
     protected $fillable = ['bait', 'content', 'guild_id', 'channel_id', 'post_id', 'user_id', 'depth'];
 
     protected $with = ['guild'];

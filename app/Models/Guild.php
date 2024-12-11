@@ -10,10 +10,12 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Laravel\Scout\Searchable;
 
 #[ObservedBy(GuildObserver::class)]
 class Guild extends Model
 {
+    use Searchable;
     use HasFactory;
     use SoftDeletes;
 
