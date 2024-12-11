@@ -2,7 +2,7 @@
     <form wire:submit="getPosts()">
         <div class="flex items-center space-x-2">
             <x-input placeholder="Search" icon="magnifying-glass" wire:model="search" />
-            <x-button label="search" />
+            <x-button label="search" type="submit" />
         </div>
     </form>
 
@@ -54,5 +54,7 @@
             </ul>
         </x-ui.card>
     @endif
-    <x-post.listing></x-post.listing>
+    @if ($this->search)
+        <x-post.listing :prompt="false"></x-post.listing>
+    @endif
 </x-layout.page>

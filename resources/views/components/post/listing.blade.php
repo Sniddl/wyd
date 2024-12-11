@@ -1,6 +1,11 @@
+@props([
+    'prompt' => true,
+])
 <section class="space-y-6 pb-12">
     @auth
-        <x-post.prompt />
+        @if ($prompt)
+            <x-post.prompt />
+        @endif
     @endauth
     <ul class="divide-y border">
         @php

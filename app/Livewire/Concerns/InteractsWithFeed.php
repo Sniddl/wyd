@@ -24,13 +24,15 @@ trait InteractsWithFeed
         /** @var \App\Models\User $user */
         $user = Auth::user();
 
-        $user->posts()->create([
+        $post = $user->posts()->create([
             'bait' => $this->shoutForm->bait,
             'guild_id' => $this->post?->guild_id ?? $this->guild?->id,
             'channel_id' => $this->post?->channel_id ?? $this->thread?->id ?? $this->channel?->id,
             'post_id' => $this->post?->id,
             'depth' => ($this->post?->depth ?? -1) + 1,
         ]);
+
+        $post->searchable();
 
         if ($this->post) {
             $this->post->replyCount += 1;
