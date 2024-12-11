@@ -27,4 +27,9 @@ abstract class Page extends Component
     {
         return $this->title ?? str(class_basename(static::class))->title();
     }
+
+    public function getBack()
+    {
+        return $this->back;
+    }
 }

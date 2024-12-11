@@ -62,13 +62,13 @@
             <x-dropdown position="right" width="sm">
                 <x-slot name="trigger">
                     <x-button class="!py-1 !px-2" rounded flat gray interaction="negative"
-                        x-on:click.stop="positionable.toggle();setTimeout(() => parseEmojis('.emojis'), 1)">
+                        x-on:click.stop="displayReactions({{ Auth::check() }})">
                         <slot name="label">
                             <div class="flex space-x-2 items-center">
                                 <span dir="rtl" x-ref="reactions"
-                                    class="space-x-[-0.3rem] space-x-reverse flex items-start">{{ data_get($reactions ?? [], 'emojis', '❤️') }}</span>
+                                    class="space-x-[-0.3rem] space-x-reverse flex items-start">{{ data_get($reactions ?? [], 'emojis') }}</span>
                                 <span class="inline-block"
-                                    x-ref="reactionsCount">{{ data_get($reactions ?? [], 'total', 0) }}</span>
+                                    x-ref="reactionsCount">{{ data_get($reactions ?? [], 'total') }}</span>
                             </div>
                         </slot>
                     </x-button>

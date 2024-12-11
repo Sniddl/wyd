@@ -60,7 +60,15 @@ trait InteractsWithFeed
 
     public function getReactionsForPosts($posts)
     {
-        $reactions = Reaction::query()
+        $postIds = $posts->pluck('id');
+        $reactions = [];
+        foreach ($postIds as $id) {
+            $reactions[$id] = [
+                'emojis' => '❤️',
+                'total' => 0,
+            ];
+        }
+        Reaction::query()
             ->select("post_reaction.post_id", "emoji", DB::raw("COUNT(*) as count"))
             ->join("post_reaction", "reactions.id", "=", "post_reaction.reaction_id")
             ->whereIn("post_reaction.post_id", $posts->pluck('id'))
@@ -69,10 +77,13 @@ trait InteractsWithFeed
             ->orderBy("count", "asc")
             ->get()
             ->groupBy("post_id")
-            ->map(fn($group) => [
-                'emojis' => $group->pluck('emoji')->join(' '),
-                'total' => Number::abbreviate($group->sum('count'))
-            ]);
-        return $reactions;
+            ->each(function ($group, $postId) use (&$reactions) {
+                $reactions[$postId] = [
+                    'emojis' => $group->pluck('emoji')->join(' '),
+                    'total' => Number::abbreviate($group->sum('count'))
+                ];
+            });
+
+        return collect($reactions);
     }
 }

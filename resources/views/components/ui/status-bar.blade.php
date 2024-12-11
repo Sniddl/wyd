@@ -2,12 +2,12 @@
     <div class="space-y-3  w-full">
         <div class="flex items-center justify-between space-x-2 relative h-12">
             <div class="z-10 flex items-center space-x-2">
-                @unless ($this->back)
+                @unless ($this->getBack())
                     <x-button class="!p-2 bg-gray-50 block md:hidden" x-on:click="toggleSidebar" rounded icon="bars-3" flat
                         gray interaction="primary" />
                 @else
                     <x-button class="!p-2 bg-gray-50" rounded icon="arrow-left" flat gray interaction="primary"
-                        :href="$this->back" wire:navigate />
+                        :href="$this->getBack()" wire:navigate />
                 @endunless
 
                 <span class="leading-none">{{ $this->getTitle() }}</span>
@@ -17,9 +17,10 @@
             <div class="flex items-center space-x-2 z-10">
                 <x-button xl class="!p-2 bg-gray-50 hidden sm:block" rounded icon="magnifying-glass" flat gray
                     interaction="primary" href="/explore" wire:navigate />
-                <x-button xl class="!p-2 bg-gray-50 hidden sm:block" rounded icon="bell" flat gray
-                    interaction="primary" href="/notifications" wire:navigate />
                 @auth
+                    <x-button xl class="!p-2 bg-gray-50 hidden sm:block" rounded icon="bell" flat gray
+                        interaction="primary" href="/notifications" wire:navigate />
+
                     <x-dropdown position="bottom-end">
                         <x-slot name="trigger">
                             <x-avatar md label="{{ str(Auth::user()->username[0])->upper() }}" negative />
@@ -34,7 +35,7 @@
                             class="!text-negative-500" wire:click="logout" />
                     </x-dropdown>
                 @else
-                    <x-icon name="user-circle" class="w-12 h-12 block md:hidden" outline x-on:click="toggleSidebar" />
+                    {{-- <x-icon name="user-circle" class="w-12 h-12 block md:hidden" outline x-on:click="toggleSidebar" /> --}}
                 @endauth
             </div>
         </div>

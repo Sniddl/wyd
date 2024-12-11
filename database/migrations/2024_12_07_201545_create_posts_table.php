@@ -38,6 +38,7 @@ return new class extends Migration
             $table->mediumText('enriched_content')->nullable();
             $table->integer('depth')->default(0);
             $table->integer('replyCount')->default(0);
+            $table->bigInteger('views')->default(0);
             $table->timestamps();
             $table->softDeletes();
         });

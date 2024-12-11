@@ -24,6 +24,7 @@ return new class extends Migration
                 ->constrained('posts', 'id')
                 ->cascadeOnDelete();
             $table->string('type');
+            $table->string('message')->nullable()->charset('utf8mb4')->collation('utf8mb4_bin');
             $table->timestamp('read_at')->nullable();
             $table->timestamp('sent_at')->nullable();
             $table->timestamps();

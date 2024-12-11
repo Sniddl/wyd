@@ -2,6 +2,7 @@
 
 namespace App\Livewire\Concerns;
 
+use App\Models\Guild;
 use Illuminate\Support\Facades\Auth;
 
 trait InteractsWithGuilds
@@ -10,9 +11,23 @@ trait InteractsWithGuilds
 
     public function getGuildMemberships()
     {
-        /** @var \App\Models\User $user */
-        $user = Auth::user();
+        if (Auth::check()) {
+            /** @var \App\Models\User $user */
+            $user = Auth::user();
 
-        return collect($user ? $user->guilds()->get() : null);
+            return collect($user ? $user->guilds()->get() : null);
+        }
+
+        return $this->getNewestGuilds(5);
+    }
+
+    public function getNewestGuilds($take = 3)
+    {
+        return Guild::latest()->take($take)->get();
+    }
+
+    public function getPopularGuilds($take = 3)
+    {
+        return $this->getNewestGuilds($take);
     }
 }

@@ -1,4 +1,7 @@
 <x-layout.page spacing>
+    @php
+        $reactions = $this->getReactionsForPosts(collect([$post->post, $post]));
+    @endphp
     @if ($post->depth >= 2)
         <div class="flex items-center justify-end px-2">
             <a class="opacity-50 hover:text-primary-500 hover:underline" href="{{ route('chain', $post->id) }}">
@@ -8,9 +11,9 @@
     @endif
     <ul class="border">
         @if ($post->post)
-            <x-post.distinct :post="$post->post" chain chainBottom />
+            <x-post.distinct :post="$post->post" chain chainBottom :reactions="$reactions->get($post->post_id)" />
         @endif
-        <x-post.distinct :$post :chain="$post->post" :chainTop="$post->post">
+        <x-post.distinct :$post :chain="$post->post" :chainTop="$post->post" :reactions="$reactions->get($post->id)">
             @if ($post->post)
                 <x-slot name="label">
                     <a class="opacity-50 hover:text-primary-500 hover:underline"

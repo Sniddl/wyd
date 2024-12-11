@@ -1,7 +1,12 @@
 <x-layout.page spacing>
+    @php
+        $posts = $this->getChain();
+        $reactions = $this->getReactionsForPosts($posts);
+    @endphp
     <ul class="border">
-        @foreach ($this->getChain() as $post)
-            <x-post.distinct :$post chain="true" :chainTop="!$loop->first" :chainBottom="!$loop->last" :chainMiddle="!$loop->first && !$loop->last" />
+        @foreach ($posts as $post)
+            <x-post.distinct :$post chain="true" :chainTop="!$loop->first" :chainBottom="!$loop->last" :chainMiddle="!$loop->first && !$loop->last"
+                :reactions="$reactions->get($post->id)" />
         @endforeach
     </ul>
     {{-- <x-post.listing /> --}}

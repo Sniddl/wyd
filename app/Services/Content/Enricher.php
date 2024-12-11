@@ -16,15 +16,7 @@ class Enricher
         $parser = new Parser();
         $ast = $parser->parse($content);
 
-        if ($post->post_id) {
-            $post->loadMissing('post');
-            Notification::create([
-                'user_id' => $post->post->user_id,
-                'post_id' => $post->id,
-                'creator_id' => $post->user_id,
-                'type' => 'reply',
-            ]);
-        }
+
 
         $grouping = collect($ast)->groupBy('type');
 
