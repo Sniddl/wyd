@@ -2,6 +2,12 @@
 
 return [
 
+    'admin' => [
+        'name' => env('APP_ADMIN_NAME', 'Admin'),
+        'username' => env('APP_ADMIN_USERNAME', 'admin'),
+        'password' => env('APP_ADMIN_PASSWORD', 'password'),
+        'email' => env('APP_ADMIN_EMAIL', 'admin@wyd.gg'),
+    ],
     /*
     |--------------------------------------------------------------------------
     | Application Name
