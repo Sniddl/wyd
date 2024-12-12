@@ -17,8 +17,6 @@ return [
 
     'domain' => env('HORIZON_DOMAIN'),
 
-    'email' => env('HORIZON_EMAIL'),
-
     /*
     |--------------------------------------------------------------------------
     | Horizon Path
