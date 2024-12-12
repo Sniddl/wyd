@@ -9,6 +9,7 @@ use App\Livewire\Layouts\Page;
 use App\Models\Guild;
 use App\Models\Post;
 use App\Models\User;
+use Exception;
 use Livewire\Attributes\Url;
 
 class Explore extends Page
@@ -33,16 +34,28 @@ class Explore extends Page
 
     public function getPosts()
     {
-        return Post::search($this->search)->get();
+        try {
+            return Post::search($this->search)->get();
+        } catch (Exception $error) {
+            return collect();
+        }
     }
 
     public function getGuilds()
     {
-        return Guild::search($this->search)->get();
+        try {
+            return Guild::search($this->search)->get();
+        } catch (Exception $error) {
+            return collect();
+        }
     }
 
     public function getUsers()
     {
-        return User::search($this->search)->get();
+        try {
+            return User::search($this->search)->get();
+        } catch (Exception $error) {
+            return collect();
+        }
     }
 }
