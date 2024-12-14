@@ -23,20 +23,27 @@ class DevelopmentSeeder extends Seeder
             'password' => Hash::make('password'),
         ]);
 
+        $peter = User::factory()->create([
+            'name' => 'Peter Hill',
+            'email' => 'peter@example.com',
+            'username' => 'PHIll',
+            'password' => Hash::make('password'),
+        ]);
+
         User::factory(10, [
             'password' => Hash::make('password')
         ])->create();
 
         $jinx->posts()->create([
-            'bait' => "Never tell anyone your password! ... Mine's password"
+            'content' => "Never tell anyone your password! ... Mine's password"
         ]);
 
         $jinx->posts()->create([
-            'bait' => "Jinx? Stands for Jinx! Durr."
+            'content' => "Jinx? Stands for Jinx! Durr."
         ]);
 
         $jinx->posts()->create([
-            'bait' => "Hold on! I'm about to say something really cool!"
+            'content' => "Hold on! I'm about to say something really cool!"
         ]);
 
         $rl = Guild::factory()->for($jinx, 'owner')->create([

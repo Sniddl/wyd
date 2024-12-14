@@ -17,6 +17,10 @@ return new class extends Migration
                 ->constrained('users', 'id')
                 ->cascadeOnDelete();
 
+            $table->string('identifier')->unique();
+
+            $table->string('slug')->unique();
+
             $table->foreignId('guild_id')
                 ->nullable()
                 ->constrained('guilds', 'id')

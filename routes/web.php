@@ -32,7 +32,8 @@ Route::get("/bookmarks", Bookmarks::class);
 Route::get("/u/{user}", Posts::class)->name('profile');
 Route::get("/u/{user}/replies", Replies::class)->name('profile.replies');
 Route::get("/settings", Settings::class);
-Route::get('/p/{post?}', Discussion::class)->name('post');
+Route::get('/p/{post:slug?}', Discussion::class)->name('post');
+
 Route::get('/d/{post?}', Chain::class)->name('chain');
 Route::get('/t/{hashtag?}', Trend::class)->name('hashtag');
 Route::post('/a/react', [ActionController::class, 'react']);

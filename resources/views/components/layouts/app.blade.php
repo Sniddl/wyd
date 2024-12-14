@@ -9,7 +9,7 @@
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.bunny.net">
-    <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
+    <link href="https://fonts.bunny.net/css?family=noto-sans:400,500,600&display=swap" rel="stylesheet" />
 
     <script src="https://cdn.jsdelivr.net/npm/@twemoji/api@latest/dist/twemoji.min.js" crossorigin="anonymous"></script>
 
@@ -17,15 +17,12 @@
     {{-- @routes --}}
     @vite(['resources/js/app.js'])
 
-
-
-
 </head>
 
 <body class="font-sans antialiased">
-    {{ $slot }}
-    @livewireScripts
     @wireUiScripts
+    {{ $slot }}
+
 </body>
 
 </html>

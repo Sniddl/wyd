@@ -23,7 +23,7 @@ class Prompt extends Component
         $user = Auth::user();
 
         $user->posts()->create([
-            'bait' => $this->form->bait
+            'content' => $this->form->content
         ]);
 
         $this->form->reset();

@@ -20,9 +20,9 @@ window.parseEmojis = function (el) {
   });
 };
 document.addEventListener("DOMContentLoaded", () => {
-  //   document.addEventListener("livewire:navigated", () => {
-  //     parseEmojis();
-  //   });
+  document.addEventListener("livewire:navigated", () => {
+    parseEmojis();
+  });
 
   //   Livewire.hook("component.initialized", (event) => {
   //     console.log("loaded");

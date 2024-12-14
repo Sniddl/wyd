@@ -1,4 +1,5 @@
 <form class="space-y-4" wire:submit="register">
+    @turnstileScripts()
     <div class="flex items-center justify-between">
         <h2 class="text-2xl font-bold">Register</h2>
         <x-button type="submit" primary label="Submit" right-icon="paper-airplane" rounded />
@@ -26,4 +27,6 @@
         <x-input label="Password" type="password" wire:model="form.password" />
         <x-input label="Confirm Password" type="password" wire:model="form.password_confirmation" />
     </div>
+
+    <x-turnstile wire:model="turnstile" />
 </form>

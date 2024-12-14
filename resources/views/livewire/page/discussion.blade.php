@@ -11,9 +11,9 @@
     @endif
     <ul class="border">
         @if ($post->post)
-            <x-post.distinct :post="$post->post" chain chainBottom :reactions="$reactions->get($post->post_id)" />
+            <x-post.distinct :post="$post->post" chain chainBottom full :reactions="$reactions->get($post->post_id)" />
         @endif
-        <x-post.distinct :$post :chain="$post->post" :chainTop="$post->post" :reactions="$reactions->get($post->id)">
+        <x-post.distinct :$post :chain="$post->post" :full="true" :chainTop="$post->post" :reactions="$reactions->get($post->id)">
             @if ($post->post)
                 <x-slot name="label">
                     <a class="opacity-50 hover:text-primary-500 hover:underline"

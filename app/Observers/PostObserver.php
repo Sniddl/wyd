@@ -15,6 +15,16 @@ class PostObserver
         $post->save();
     }
 
+    public function creating(Post $post)
+    {
+        $slugLength = 89;
+        $randomness = 11;
+        $prefix = str()->slug(substr($post->content, 0, $slugLength));
+        $post->identifier = str()->random($randomness);
+        $post->slug = str($prefix . ' ' . $post->identifier)->slug();
+        $post->bait = substr($post->content, 0, 254);
+    }
+
     public function created(Post $post)
     {
         if ($post->post_id) {

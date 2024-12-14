@@ -2,7 +2,6 @@ export default () => ({
   displayReactions(authenticated) {
     if (authenticated) {
       this.positionable.toggle();
-      setTimeout(() => parseEmojis(".emojis"), 1);
     } else {
       this.$dispatch("modal:open", ["page.auth.login"]);
     }

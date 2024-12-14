@@ -5,7 +5,7 @@
     @endphp
     <ul class="border">
         @foreach ($posts as $post)
-            <x-post.distinct :$post chain="true" :chainTop="!$loop->first" :chainBottom="!$loop->last" :chainMiddle="!$loop->first && !$loop->last"
+            <x-post.distinct :$post full chain :chainTop="!$loop->first" :chainBottom="!$loop->last" :chainMiddle="!$loop->first && !$loop->last"
                 :reactions="$reactions->get($post->id)" />
         @endforeach
     </ul>

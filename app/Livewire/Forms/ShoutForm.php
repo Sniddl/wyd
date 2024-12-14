@@ -7,19 +7,19 @@ use Livewire\Form;
 
 class ShoutForm extends Form
 {
-    public ?string $bait = null;
+    public ?string $content = null;
 
     protected function rules()
     {
         return [
-            'bait' => ['required', 'string', 'min:2'],
+            'content' => ['required', 'string', 'min:10', 'max:1500'],
         ];
     }
 
     protected function getMessages()
     {
         return [
-            'bait' => 'Your posts must be at least 10 letters long.'
+            'content' => 'Your post must be between 10 and 1500 characters.'
         ];
     }
 }

@@ -16,9 +16,19 @@ class Post extends Model
 {
     use Searchable;
 
-    protected $fillable = ['bait', 'content', 'guild_id', 'channel_id', 'post_id', 'user_id', 'depth'];
+    protected $fillable = ['content', 'guild_id', 'channel_id', 'post_id', 'user_id', 'depth'];
 
     protected $with = ['guild'];
+
+    public function getRouteKeyName()
+    {
+        return 'identifier';
+    }
+
+    public function resolveRouteBindingQuery($query, $value, $field = null)
+    {
+        return $query->where('slug', $value)->orWhere('identifier', $value);
+    }
 
     public function author(): BelongsTo
     {
@@ -47,8 +57,13 @@ class Post extends Model
 
     public function enrich($db = false): Post
     {
-        $enricher = new Enricher($db);
+        /**
+         * Todo handle cut-off hashtags and mentions
+         */
+        $enricher = new Enricher(false);
         $this->enriched_bait = $enricher->enrich($this, $this->bait);
+        $enricher = new Enricher($db);
+        $this->enriched_content = $enricher->enrich($this, $this->content);
         $this->save();
         return $this;
     }

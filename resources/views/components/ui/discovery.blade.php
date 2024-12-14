@@ -10,7 +10,8 @@
                             <div class="leading-tight">
                                 <div class="font-bold w-32 whitespace-nowrap overflow-hidden text-ellipsis">
                                     {{ $member->name }}</div>
-                                <div class="opacity-50 w-32 whitespace-nowrap overflow-hidden text-ellipsis">
+                                <div
+                                    class="opacity-50 w-32 whitespace-nowrap overflow-hidden text-ellipsis flex items-center">
                                     <span>@</span>
                                     <span>{{ $member->username }}</span>
                                 </div>

@@ -14,9 +14,9 @@ class GuildCreate extends Form
     protected function rules()
     {
         return [
-            'name' => ['required', 'string', 'min:1',],
-            'url' => ['required', 'string', 'unique:guilds,identifier'],
-            'description' => ['nullable', 'string'],
+            'name' => ['required', 'string', 'min:1'],
+            'url' => ['required', 'string', 'unique:guilds,identifier', 'alpha_dash:ascii'],
+            'description' => ['nullable', 'string', 'max:240'],
         ];
     }
 

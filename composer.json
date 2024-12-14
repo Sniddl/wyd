@@ -16,6 +16,7 @@
         "laravel/tinker": "^2.9",
         "livewire/livewire": "^3.5",
         "meilisearch/meilisearch-php": "^1.11",
+        "ryangjchandler/laravel-cloudflare-turnstile": "^1.1",
         "simplesoftwareio/simple-qrcode": "^4.2",
         "staudenmeir/laravel-cte": "^1.11",
         "tightenco/ziggy": "^2.0",

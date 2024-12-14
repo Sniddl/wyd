@@ -25,7 +25,7 @@ trait InteractsWithFeed
         $user = Auth::user();
 
         $post = $user->posts()->create([
-            'bait' => $this->shoutForm->bait,
+            'content' => $this->shoutForm->content,
             'guild_id' => $this->post?->guild_id ?? $this->guild?->id,
             'channel_id' => $this->post?->channel_id ?? $this->thread?->id ?? $this->channel?->id,
             'post_id' => $this->post?->id,
