@@ -14,10 +14,6 @@
     </div>
 
     <div class="flex items-center space-x-2">
-        <x-button x-on:click="more = !more" type="button" flat rounded secondary interaction="secondary">
-            <span x-text="`Write ${more ? 'less' : 'more'}`"></span>
-        </x-button>
         <x-button type="submit" label="Shout" rounded right-icon="megaphone" primary interaction="primary" />
-
     </div>
 </form>

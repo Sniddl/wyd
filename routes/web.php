@@ -38,23 +38,6 @@ Route::get('/d/{post?}', Chain::class)->name('chain');
 Route::get('/t/{hashtag?}', Trend::class)->name('hashtag');
 Route::post('/a/react', [ActionController::class, 'react']);
 
-Route::get("/dashboard", function () {
-    return Inertia::render("Dashboard");
-})
-    ->middleware(["auth", "verified"])
-    ->name("dashboard");
-
-// Route::middleware("auth")->group(function () {
-//     Route::get("/profile", [ProfileController::class, "edit"])->name(
-//         "profile.edit"
-//     );
-//     Route::patch("/profile", [ProfileController::class, "update"])->name(
-//         "profile.update"
-//     );
-//     Route::delete("/profile", [ProfileController::class, "destroy"])->name(
-//         "profile.destroy"
-//     );
-// });
 
 Route::middleware('guest')->group(function () {
     Route::get('/register', Home::class)
@@ -64,4 +47,3 @@ Route::middleware('guest')->group(function () {
         ->name('login')
         ->middleware(['modal:page.auth.login']);
 });
-// require __DIR__ . "/auth.php";
