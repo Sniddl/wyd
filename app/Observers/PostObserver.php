@@ -11,8 +11,10 @@ class PostObserver
 {
     public function retrieved(Post $post)
     {
-        // $post->views += 1;
-        // $post->save();
+        $post->withoutSyncingToSearch(function () use ($post) {
+            $post->views += 1;
+            $post->save();
+        });
     }
 
     public function creating(Post $post)
