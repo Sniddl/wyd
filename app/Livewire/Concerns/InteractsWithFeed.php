@@ -32,8 +32,6 @@ trait InteractsWithFeed
             'depth' => ($this->post?->depth ?? -1) + 1,
         ]);
 
-        $post->searchable();
-
         if ($this->post) {
             $this->post->replyCount += 1;
             $this->post->save();
