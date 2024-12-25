@@ -11,8 +11,8 @@ class PostObserver
 {
     public function retrieved(Post $post)
     {
-        $post->views += 1;
-        $post->save();
+        // $post->views += 1;
+        // $post->save();
     }
 
     public function creating(Post $post)
